@@ -12,7 +12,7 @@ class Student(models.Model):
     # region ---------------------- TODO[IMP]: Fields Declaration ---------------------------------
     # region  Basic
     name = fields.Char()
-    description = fields.Char()
+    description = fields.Html(string='Description')
     date_of_birth = fields.Date()
     contact_details = fields.Char()
     address = fields.Char()
