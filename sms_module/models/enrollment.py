@@ -4,6 +4,11 @@ class Enrollment(models.Model):
 
     # region ---------------------- TODO[IMP]: Private Attributes --------------------------------
     _name = "sms_module.enrollment"
+    _description = "Enrollment"
+    _sql_constraints = [
+        ('unique_student_course', 'unique(student_id, course_id)',
+         'The combination of student and course must be unique!')
+    ]
     # endregion
 
     # region ---------------------- TODO[IMP]:Default Methods ------------------------------------
@@ -30,10 +35,7 @@ class Enrollment(models.Model):
     # endregion
 
     # region ---------------------- TODO[IMP]: Constrains and Onchanges ---------------------------
-    _sql_constraints = [
-        ('unique_student_course', 'unique(student_id, course_id)',
-         'The combination of student and course must be unique!')
-    ]
+
     # endregion
 
     # region ---------------------- TODO[IMP]: CRUD Methods -------------------------------------

@@ -4,6 +4,11 @@ class Student(models.Model):
 
     # region ---------------------- TODO[IMP]: Private Attributes --------------------------------
     _name = "sms_module.student"
+    _description = "Student"
+    _sql_constraints = [
+        ('unique_student_name', 'unique("name")', 'Student name is exist'),
+        ('unique_student_id', 'unique("student_id")', 'Student id is exist'),
+    ]
     # endregion
 
     # region ---------------------- TODO[IMP]:Default Methods ------------------------------------
@@ -36,10 +41,7 @@ class Student(models.Model):
     # endregion
 
     # region ---------------------- TODO[IMP]: Constrains and Onchanges ---------------------------
-    _sql_constraints = [
-        ('unique_student_name', 'unique("name")', 'This name is exist'),
-        ('unique_student_id', 'unique("student_id")', 'This id is exist'),
-    ]
+
     # endregion
 
     # region ---------------------- TODO[IMP]: CRUD Methods -------------------------------------

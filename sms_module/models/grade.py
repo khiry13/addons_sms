@@ -4,6 +4,7 @@ class Grade(models.Model):
 
     # region ---------------------- TODO[IMP]: Private Attributes --------------------------------
     _name = "sms_module.grade"
+    _description = "Grade"
     # endregion
 
     # region ---------------------- TODO[IMP]:Default Methods ------------------------------------

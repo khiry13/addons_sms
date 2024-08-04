@@ -4,6 +4,11 @@ class Attendance(models.Model):
 
     # region ---------------------- TODO[IMP]: Private Attributes --------------------------------
     _name = "sms_module.attendance"
+    _description = "Attendance"
+    _sql_constraints = [
+        ('unique_attendance', 'unique(attendance_date, student_id, course_id)',
+         'The combination of attendance date, student, and course must be unique!')
+    ]
     # endregion
 
     # region ---------------------- TODO[IMP]:Default Methods ------------------------------------
@@ -31,10 +36,7 @@ class Attendance(models.Model):
     # endregion
 
     # region ---------------------- TODO[IMP]: Constrains and Onchanges ---------------------------
-    _sql_constraints = [
-        ('unique_attendance', 'unique(attendance_date, student_id, course_id)',
-         'The combination of attendance date, student, and course must be unique!')
-    ]
+
     # endregion
 
     # region ---------------------- TODO[IMP]: CRUD Methods -------------------------------------

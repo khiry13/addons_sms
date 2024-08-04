@@ -4,6 +4,10 @@ class Course(models.Model):
 
     # region ---------------------- TODO[IMP]: Private Attributes --------------------------------
     _name = "sms_module.course"
+    _description = "Course"
+    _sql_constraints = [
+        ('unique_course_name', 'unique("name")', 'This name is exist'),
+    ]
     # endregion
 
     # region ---------------------- TODO[IMP]:Default Methods ------------------------------------
@@ -32,9 +36,7 @@ class Course(models.Model):
     # endregion
 
     # region ---------------------- TODO[IMP]: Constrains and Onchanges ---------------------------
-    _sql_constraints = [
-        ('unique_course_name', 'unique("name")', 'This name is exist'),
-    ]
+
     # endregion
 
     # region ---------------------- TODO[IMP]: CRUD Methods -------------------------------------
