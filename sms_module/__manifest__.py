@@ -18,14 +18,21 @@ Long description of module's purpose
     'version': '0.1',
 
     # any module necessary for this one to work correctly
-    'depends': ['base'],
+    'depends': ['base', 'mail'],
 
     # always loaded
     'data': [
         'security/groups.xml',
         'security/ir.model.access.csv',
-        'views/views.xml',
-        'views/templates.xml',
+        'views/student_views.xml',
+        'views/course_views.xml',
+        'views/enrollment_views.xml',
+        'views/grade_views.xml',
+        'views/attendance_views.xml',
+        'views/menus.xml'
+
+        # 'views/views.xml',
+        # 'views/templates.xml',
     ],
     # only loaded in demonstration mode
     'demo': [

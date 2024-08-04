@@ -1,0 +1,57 @@
+<odoo>
+    <record id="view_course_form" model="ir.ui.view">
+        <field name="name">sms_module.course.form</field>
+        <field name="model">sms_module.course</field>
+        <field name="arch" type="xml">
+            <form string="Course">
+                <sheet>
+                    <group>
+                        <field name="name"/>
+                        <field name="description"/>
+                        <field name="syllabus"/>
+                        <field name="duration"/>
+                        <field name="prerequisites"/>
+                    </group>
+                </sheet>
+                <div class="oe_chatter">
+                    <field name="message_follower_ids" />
+                    <field name="activity_ids" />
+                    <field name="message_ids" />
+                </div>
+            </form>
+        </field>
+    </record>
+
+    <record id="view_course_tree" model="ir.ui.view">
+        <field name="name">sms_module.course.tree</field>
+        <field name="model">sms_module.course</field>
+        <field name="arch" type="xml">
+            <tree string="Course">
+                <field name="name"/>
+                <field name="description"/>
+                <field name="duration"/>
+            </tree>
+        </field>
+    </record>
+
+    <record id="view_course_search" model="ir.ui.view">
+        <field name="name">sms_module.course.search</field>
+        <field name="model">sms_module.course</field>
+        <field name="arch" type="xml">
+            <search>
+                <field name="name"/>
+                <field name="description"/>
+                <field name="duration"/>
+            </search>
+        </field>
+    </record>
+
+    <record id="action_course" model="ir.actions.act_window">
+        <field name="name">Courses</field>
+        <field name="res_model">sms_module.course</field>
+        <field name="view_mode">tree,form</field>
+        <field name="view_id" ref="view_course_tree"/>
+        <field name="search_view_id" ref="view_course_search"/>
+    </record>
+    
+</odoo>

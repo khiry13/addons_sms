@@ -1,0 +1,65 @@
+<odoo>
+    <!-- Student Views -->
+    <record id="view_student_form" model="ir.ui.view">
+        <field name="name">sms_module.student.form</field>
+        <field name="model">sms_module.student</field>
+        <field name="arch" type="xml">
+            <form>
+                <sheet>
+                    <group>
+                        <group>
+                            <field name="name"/>
+                            <field name="date_of_birth"/>
+                            <field name="student_id"/>
+                            <field name="contact_details"/>
+                            <field name="address"/>
+                            <field name="guardian_details"/>
+                        </group>
+                        <group>
+                            <field name="national_doc"/>
+                            <field name="image"/>
+                            <field name="description"/>
+                        </group>
+                    </group>
+                </sheet>
+                <div class="oe_chatter">
+                    <field name="message_follower_ids" />
+                    <field name="activity_ids" />
+                    <field name="message_ids" />
+                </div>
+            </form>
+        </field>
+    </record>
+
+    <record id="view_student_tree" model="ir.ui.view">
+        <field name="name">sms_module.student.tree</field>
+        <field name="model">sms_module.student</field>
+        <field name="arch" type="xml">
+            <tree string="Student">
+                <field name="name"/>
+                <field name="date_of_birth"/>
+                <field name="student_id"/>
+            </tree>
+        </field>
+    </record>
+
+    <record id="view_student_search" model="ir.ui.view">
+        <field name="name">sms_module.student.search</field>
+        <field name="model">sms_module.student</field>
+        <field name="arch" type="xml">
+            <search>
+                <field name="name"/>
+                <field name="date_of_birth"/>
+                <field name="student_id"/>
+            </search>
+        </field>
+    </record>
+
+    <record id="action_student" model="ir.actions.act_window">
+        <field name="name">Students</field>
+        <field name="res_model">sms_module.student</field>
+        <field name="view_mode">tree,form</field>
+        <field name="view_id" ref="view_student_tree"/>
+        <field name="search_view_id" ref="view_student_search"/>
+    </record>
+</odoo>

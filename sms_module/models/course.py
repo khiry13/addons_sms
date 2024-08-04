@@ -5,6 +5,7 @@ class Course(models.Model):
     # region ---------------------- TODO[IMP]: Private Attributes --------------------------------
     _name = "sms_module.course"
     _description = "Course"
+    _inherit = ['mail.thread', 'mail.activity.mixin']
     _sql_constraints = [
         ('unique_course_name', 'unique("name")', 'This name is exist'),
     ]
