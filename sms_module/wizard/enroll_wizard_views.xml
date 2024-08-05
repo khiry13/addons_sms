@@ -1,0 +1,29 @@
+<odoo>
+    <record id="view_enroll_wizard_form" model="ir.ui.view">
+        <field name="name">enroll.wizard.form</field>
+        <field name="model">enroll.wizard</field>
+        <field name="arch" type="xml">
+            <form string="Enroll Students">
+                <group>
+                    <field name="student_ids" widget="many2many_tags"/>
+                    <field name="course_id"/>
+                </group>
+                <footer>
+                    <button string="Enroll" type="object" name="action_enroll_students" class="btn-primary"/>
+                    <button string="Cancel" class="btn-secondary" special="cancel"/>
+                </footer>
+            </form>
+        </field>
+    </record>
+
+    <record id="action_enroll_wizard" model="ir.actions.act_window">
+        <field name="name">Enroll Students</field>
+        <field name="res_model">enroll.wizard</field>
+        <field name="view_mode">form</field>
+        <field name="target">new</field>
+    </record>
+
+    <menuitem id="menu_enroll_wizard" name="Enroll Students"
+              parent="sms_module.menu_sms_registrar"
+              action="action_enroll_wizard"/>
+</odoo>

@@ -5,6 +5,8 @@
 
         <menuitem id="menu_sms" name="SMS" parent="menu_sms_root" />
 
+        <menuitem id="menu_sms_registrar" name="Registrar" parent="menu_sms_root" />
+
         <menuitem id="menu_student" name="Students" parent="menu_sms" action="action_student" sequence="1"/>
 
         <menuitem id="menu_course" name="Courses" parent="menu_sms" action="action_course" sequence="2"/>

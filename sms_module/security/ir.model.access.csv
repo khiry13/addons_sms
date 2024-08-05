@@ -39,3 +39,6 @@ access_sms_readonly_course,access_sms_readonly_course,model_sms_module_course,sm
 access_sms_readonly_enrollment,access_sms_readonly_enrollment,model_sms_module_enrollment,sms_module.group_sms_readonly,1,0,0,0
 access_sms_readonly_grade,access_sms_readonly_grade,model_sms_module_grade,sms_module.group_sms_readonly,1,0,0,0
 access_sms_readonly_attendance,access_sms_readonly_attendance,model_sms_module_attendance,sms_module.group_sms_readonly,1,0,0,0
+
+access_enroll_wizard,access.enroll.wizard,model_enroll_wizard,sms_module.group_sms_registrar,1,1,1,1
+access_enroll_wizard,access.enroll.wizard,model_enroll_wizard,sms_module.group_sms_administrator,1,1,1,1

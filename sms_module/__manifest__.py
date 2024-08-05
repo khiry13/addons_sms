@@ -29,7 +29,8 @@ Long description of module's purpose
         'views/enrollment_views.xml',
         'views/grade_views.xml',
         'views/attendance_views.xml',
-        'views/menus.xml'
+        'views/menus.xml',
+        'wizard/enroll_wizard_views.xml'
 
         # 'views/views.xml',
         # 'views/templates.xml',
