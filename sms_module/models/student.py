@@ -1,4 +1,5 @@
-from odoo import models, fields
+from odoo import models, fields, api
+
 
 class Student(models.Model):
 
@@ -39,6 +40,11 @@ class Student(models.Model):
 
     # endregion
     # region ---------------------- TODO[IMP]: Compute methods ------------------------------------
+    @api.model
+    def _name_search(self, name='', args=None, operator='ilike', limit=100, name_get_uid=None, order='name asc'):
+        args = args or []
+        domain = ['|', ('name', operator, name), ('student_id', operator, name)]
+        return self._search(domain + args, limit=limit, access_rights_uid=name_get_uid, order=order)
     # endregion
 
     # region ---------------------- TODO[IMP]: Constrains and Onchanges ---------------------------

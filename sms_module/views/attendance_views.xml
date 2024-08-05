@@ -38,6 +38,19 @@
                 <field name="status"/>
                 <field name="student_id"/>
                 <field name="course_id"/>
+
+                <filter string="Absent" name="status_absent" domain="[('status','=','absent')]"/>
+                <filter string="Present" name="status_present" domain="[('status','=','present')]"/>
+
+                <filter string="Today" name="date_today" domain="[('attendance_date','=',context_today())]"/>
+                <filter string="Yesterday" name="date_yesterday" domain="[('attendance_date','=',(context_today()-datetime.timedelta(days=1)).strftime('%Y-%m-%d'))]"/>
+                <filter string="Last 4 Weeks" name="date_last_4_weeks" domain="[('attendance_date','&gt;=',(context_today()-datetime.timedelta(weeks=4)).strftime('%Y-%m-%d'))]"/>
+
+                <group expand="0" string="Group By">
+                    <filter string="Student" name="group_student" context="{'group_by':'student_id'}"/>
+                    <filter string="Course" name="group_course" context="{'group_by':'course_id'}"/>
+                    <filter string="Date" name="group_date" context="{'group_by':'attendance_date'}"/>
+                </group>
             </search>
         </field>
     </record>
@@ -48,6 +61,7 @@
         <field name="view_mode">tree,form</field>
         <field name="view_id" ref="view_attendance_tree"/>
         <field name="search_view_id" ref="view_attendance_search"/>
+        <field name="context">{'search_default_date_today': 1}</field>
     </record>
 
 </odoo>
