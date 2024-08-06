@@ -16,8 +16,13 @@ class Attendance(models.Model):
 
     # region ---------------------- TODO[IMP]: Fields Declaration ---------------------------------
     # region  Basic
-    attendance_date = fields.Date()
+    attendance_date = fields.Date(default=fields.Date.context_today)
     status = fields.Char()
+    absence_notes = fields.Text()
+    comments = fields.Text()
+    class_name = fields.Char()
+    internal_notes = fields.Text()
+    checkin_time = fields.Datetime(default=fields.Datetime.now)
     # endregion
 
     # region  Special

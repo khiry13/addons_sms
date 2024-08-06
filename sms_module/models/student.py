@@ -24,9 +24,10 @@ class Student(models.Model):
     contact_details = fields.Char()
     address = fields.Char()
     guardian_details = fields.Char()
-    student_id = fields.Char()
+    student_id = fields.Char(default='New', readonly=1)
     national_doc = fields.Binary()
     image = fields.Image()
+    activate = fields.Boolean(default=True)
     # endregion
 
     # region  Special
@@ -45,6 +46,14 @@ class Student(models.Model):
         args = args or []
         domain = ['|', ('name', operator, name), ('student_id', operator, name)]
         return self._search(domain + args, limit=limit, access_rights_uid=name_get_uid, order=order)
+
+    @api.model
+    def create(self, vals):
+        result = super(Student, self).create(vals)
+        if result.student_id == 'New':
+            result.student_id = self.env['ir.sequence'].next_by_code('student.sequence')
+        return result
+
     # endregion
 
     # region ---------------------- TODO[IMP]: Constrains and Onchanges ---------------------------

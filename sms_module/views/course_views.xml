@@ -5,12 +5,14 @@
         <field name="arch" type="xml">
             <form string="Course">
                 <sheet>
+                    <widget name="web_ribbon" title="Featured" bg_color="text-bg-success" invisible="is_featured != True" />
                     <group>
                         <field name="name"/>
                         <field name="description"/>
                         <field name="syllabus"/>
                         <field name="duration"/>
                         <field name="prerequisites"/>
+                        <field name="is_featured"/>
                     </group>
                 </sheet>
                 <div class="oe_chatter">
@@ -30,6 +32,7 @@
                 <field name="name"/>
                 <field name="description"/>
                 <field name="duration"/>
+                <field name="is_featured" widget="web_ribbon"/>
             </tree>
         </field>
     </record>

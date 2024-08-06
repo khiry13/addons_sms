@@ -21,6 +21,7 @@ class Course(models.Model):
     syllabus = fields.Char()
     duration = fields.Integer()
     prerequisites = fields.Char()
+    is_featured = fields.Boolean()
     # endregion
 
     # region  Special

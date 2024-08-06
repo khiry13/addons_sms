@@ -9,6 +9,7 @@
                         <field name="enrollment_date"/>
                         <field name="student_id"/>
                         <field name="course_id"/>
+                        <field name="state" widget="statusbar" options="{'clickable': 1}"/>
                     </group>
                 </sheet>
             </form>

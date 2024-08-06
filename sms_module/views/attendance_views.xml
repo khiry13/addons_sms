@@ -10,6 +10,7 @@
                         <field name="status"/>
                         <field name="student_id"/>
                         <field name="course_id"/>
+                        <field name="absence_notes" invisible="status == 'present'"/>
                     </group>
                 </sheet>
             </form>
@@ -20,11 +21,14 @@
         <field name="name">sms_module.attendance.tree</field>
         <field name="model">sms_module.attendance</field>
         <field name="arch" type="xml">
-            <tree string="Attendance">
+            <tree string="Attendance" decoration-danger="status == 'absent'" decoration-success="status == 'present'">
                 <field name="attendance_date"/>
                 <field name="status"/>
                 <field name="student_id"/>
                 <field name="course_id"/>
+                <field name="comments" optional="hide"/>
+                <field name="class_name" optional="show"/>
+                <field name="internal_notes" invisible="1"/>
             </tree>
         </field>
     </record>
