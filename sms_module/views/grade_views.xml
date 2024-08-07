@@ -1,5 +1,7 @@
+<?xml version="1.0" encoding="utf-8"?>
 <odoo>
-    <record id="view_grade_form" model="ir.ui.view">
+    <!--TODO[IMP]: grade_view_form-->
+    <record id="grade_view_form" model="ir.ui.view">
         <field name="name">sms_module.grade.form</field>
         <field name="model">sms_module.grade</field>
         <field name="arch" type="xml">
@@ -16,7 +18,8 @@
         </field>
     </record>
 
-    <record id="view_grade_tree" model="ir.ui.view">
+    <!--TODO[IMP]: grade_view_tree-->
+    <record id="grade_view_tree" model="ir.ui.view">
         <field name="name">sms_module.grade.tree</field>
         <field name="model">sms_module.grade</field>
         <field name="arch" type="xml">
@@ -29,7 +32,8 @@
         </field>
     </record>
 
-    <record id="view_grade_search" model="ir.ui.view">
+    <!--TODO[IMP]: grade_view_search-->
+    <record id="grade_view_search" model="ir.ui.view">
         <field name="name">sms_module.grade.search</field>
         <field name="model">sms_module.grade</field>
         <field name="arch" type="xml">
@@ -42,12 +46,13 @@
         </field>
     </record>
 
-    <record id="action_grade" model="ir.actions.act_window">
+    <!--TODO[IMP]: grade_action-->
+    <record id="grade_action" model="ir.actions.act_window">
         <field name="name">Grades</field>
         <field name="res_model">sms_module.grade</field>
         <field name="view_mode">tree,form</field>
-        <field name="view_id" ref="view_grade_tree"/>
-        <field name="search_view_id" ref="view_grade_search"/>
+        <field name="view_id" ref="grade_view_tree"/>
+        <field name="search_view_id" ref="grade_view_search"/>
     </record>
 
 </odoo>

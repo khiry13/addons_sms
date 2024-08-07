@@ -1,1 +1,1 @@
-from . import enroll_wizard
+from . import make_enroll_wizard

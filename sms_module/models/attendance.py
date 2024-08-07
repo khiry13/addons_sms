@@ -1,4 +1,7 @@
-from odoo import models, fields
+from datetime import datetime, date
+
+from odoo import models, fields, api
+
 
 class Attendance(models.Model):
 
@@ -16,13 +19,13 @@ class Attendance(models.Model):
 
     # region ---------------------- TODO[IMP]: Fields Declaration ---------------------------------
     # region  Basic
-    attendance_date = fields.Date(default=fields.Date.context_today)
+    attendance_date = fields.Date(default=lambda self: self._default_attendance_date())
     status = fields.Char()
     absence_notes = fields.Text()
     comments = fields.Text()
     class_name = fields.Char()
     internal_notes = fields.Text()
-    checkin_time = fields.Datetime(default=fields.Datetime.now)
+    checkin_time = fields.Datetime(default=lambda self: self._default_checkin_time())
     # endregion
 
     # region  Special
@@ -51,4 +54,11 @@ class Attendance(models.Model):
     # endregion
 
     # region ---------------------- TODO[IMP]: Business Methods -------------------------------------
+    @api.model
+    def _default_attendance_date(self):
+        return date.today()
+
+    @api.model
+    def _default_checkin_time(self):
+        return datetime.now()
     # endregion

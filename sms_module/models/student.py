@@ -34,6 +34,7 @@ class Student(models.Model):
     # endregion
 
     # region  Relational
+    enrollment_ids = fields.One2many('sms_module.enrollment', 'student_id', string='Enrollments')
     # endregion
 
     # region  Computed
@@ -51,7 +52,7 @@ class Student(models.Model):
     def create(self, vals):
         result = super(Student, self).create(vals)
         if result.student_id == 'New':
-            result.student_id = self.env['ir.sequence'].next_by_code('student.sequence')
+            result.student_id = self.env['ir.sequence'].next_by_code('sms_module.student_id')
         return result
 
     # endregion

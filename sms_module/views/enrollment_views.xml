@@ -1,5 +1,7 @@
+<?xml version="1.0" encoding="utf-8"?>
 <odoo>
-    <record id="view_enrollment_form" model="ir.ui.view">
+    <!--TODO[IMP]: enrollment_view_form-->
+    <record id="enrollment_view_form" model="ir.ui.view">
         <field name="name">sms_module.enrollment.form</field>
         <field name="model">sms_module.enrollment</field>
         <field name="arch" type="xml">
@@ -16,7 +18,8 @@
         </field>
     </record>
 
-    <record id="view_enrollment_tree" model="ir.ui.view">
+    <!--TODO[IMP]: enrollment_view_tree-->
+    <record id="enrollment_view_tree" model="ir.ui.view">
         <field name="name">sms_module.enrollment.tree</field>
         <field name="model">sms_module.enrollment</field>
         <field name="arch" type="xml">
@@ -28,7 +31,8 @@
         </field>
     </record>
 
-    <record id="view_enrollment_search" model="ir.ui.view">
+    <!--TODO[IMP]: enrollment_view_search-->
+    <record id="enrollment_view_search" model="ir.ui.view">
         <field name="name">sms_module.enrollment.search</field>
         <field name="model">sms_module.enrollment</field>
         <field name="arch" type="xml">
@@ -40,12 +44,51 @@
         </field>
     </record>
 
-    <record id="action_enrollment" model="ir.actions.act_window">
+    <!--TODO[IMP]: enrollment_view_kanban-->
+    <record id="enrollment_view_kanban" model="ir.ui.view">
+        <field name="name">enrollment.kanban</field>
+        <field name="model">sms_module.enrollment</field>
+        <field name="arch" type="xml">
+            <kanban default_group_by="state" create="true">
+                <templates>
+                    <t t-name="kanban-box">
+                        <div t-attf-class="oe_kanban_card">
+                            <div>
+                                <strong><field name="student_id"/></strong>
+                            </div>
+                            <div>
+                                <field name="course_id"/>
+                            </div>
+                            <div>
+                                <field name="enrollment_date"/>
+                            </div>
+                        </div>
+                    </t>
+                </templates>
+            </kanban>
+        </field>
+    </record>
+
+    <!--TODO[IMP]: enrollment_view_calendar-->
+    <record id="enrollment_view_calendar" model="ir.ui.view">
+        <field name="name">sms_module.enrollment.calendar</field>
+        <field name="model">sms_module.enrollment</field>
+        <field name="arch" type="xml">
+            <calendar string="Enrollments" date_start="enrollment_date" event_limit="5"
+                      color="state" event_open_popup="True">
+                <field name="student_id"/>
+                <field name="course_id" filters="1"/>
+            </calendar>
+        </field>
+    </record>
+
+    <!--TODO[IMP]: enrollment_action-->
+    <record id="enrollment_action" model="ir.actions.act_window">
         <field name="name">Enrollments</field>
         <field name="res_model">sms_module.enrollment</field>
-        <field name="view_mode">tree,form</field>
-        <field name="view_id" ref="view_enrollment_tree"/>
-        <field name="search_view_id" ref="view_enrollment_search"/>
+        <field name="view_mode">tree,form,kanban,calendar</field>
+        <field name="view_id" ref="enrollment_view_tree"/>
+        <field name="search_view_id" ref="enrollment_view_search"/>
     </record>
 
 </odoo>

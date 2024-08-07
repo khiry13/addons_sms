@@ -24,6 +24,6 @@
     </record>
 
     <menuitem id="menu_enroll_wizard" name="Enroll Students"
-              parent="sms_module.menu_sms_registrar"
+              parent="sms_module.enroll_student_menu"
               action="action_enroll_wizard"/>
 </odoo>

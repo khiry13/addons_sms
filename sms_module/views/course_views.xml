@@ -1,5 +1,7 @@
+<?xml version="1.0" encoding="utf-8"?>
 <odoo>
-    <record id="view_course_form" model="ir.ui.view">
+    <!--TODO[IMP]: course_view_form-->
+    <record id="course_view_form" model="ir.ui.view">
         <field name="name">sms_module.course.form</field>
         <field name="model">sms_module.course</field>
         <field name="arch" type="xml">
@@ -24,7 +26,8 @@
         </field>
     </record>
 
-    <record id="view_course_tree" model="ir.ui.view">
+    <!--TODO[IMP]: course_view_tree-->
+    <record id="course_view_tree" model="ir.ui.view">
         <field name="name">sms_module.course.tree</field>
         <field name="model">sms_module.course</field>
         <field name="arch" type="xml">
@@ -32,12 +35,13 @@
                 <field name="name"/>
                 <field name="description"/>
                 <field name="duration"/>
-                <field name="is_featured" widget="web_ribbon"/>
+                <field name="is_featured"/>
             </tree>
         </field>
     </record>
 
-    <record id="view_course_search" model="ir.ui.view">
+    <!--TODO[IMP]: course_view_search-->
+    <record id="course_view_search" model="ir.ui.view">
         <field name="name">sms_module.course.search</field>
         <field name="model">sms_module.course</field>
         <field name="arch" type="xml">
@@ -49,12 +53,13 @@
         </field>
     </record>
 
-    <record id="action_course" model="ir.actions.act_window">
+    <!--TODO[IMP]: course_action-->
+    <record id="course_action" model="ir.actions.act_window">
         <field name="name">Courses</field>
         <field name="res_model">sms_module.course</field>
         <field name="view_mode">tree,form</field>
-        <field name="view_id" ref="view_course_tree"/>
-        <field name="search_view_id" ref="view_course_search"/>
+        <field name="view_id" ref="course_view_tree"/>
+        <field name="search_view_id" ref="course_view_search"/>
     </record>
     
 </odoo>

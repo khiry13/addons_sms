@@ -1,5 +1,7 @@
+<?xml version="1.0" encoding="utf-8"?>
 <odoo>
-    <record id="view_attendance_form" model="ir.ui.view">
+    <!--TODO[IMP]: attendance_view_form-->
+    <record id="attendance_view_form" model="ir.ui.view">
         <field name="name">sms_module.attendance.form</field>
         <field name="model">sms_module.attendance</field>
         <field name="arch" type="xml">
@@ -16,8 +18,9 @@
             </form>
         </field>
     </record>
+    <!--TODO[IMP]: attendance_view_tree-->
 
-    <record id="view_attendance_tree" model="ir.ui.view">
+    <record id="attendance_view_tree" model="ir.ui.view">
         <field name="name">sms_module.attendance.tree</field>
         <field name="model">sms_module.attendance</field>
         <field name="arch" type="xml">
@@ -33,7 +36,8 @@
         </field>
     </record>
 
-    <record id="view_attendance_search" model="ir.ui.view">
+    <!--TODO[IMP]: attendance_view_search-->
+    <record id="attendance_view_search" model="ir.ui.view">
         <field name="name">sms_module.attendance.search</field>
         <field name="model">sms_module.attendance</field>
         <field name="arch" type="xml">
@@ -47,8 +51,8 @@
                 <filter string="Present" name="status_present" domain="[('status','=','present')]"/>
 
                 <filter string="Today" name="date_today" domain="[('attendance_date','=',context_today())]"/>
-                <filter string="Yesterday" name="date_yesterday" domain="[('attendance_date','=',(context_today()-datetime.timedelta(days=1)).strftime('%Y-%m-%d'))]"/>
-                <filter string="Last 4 Weeks" name="date_last_4_weeks" domain="[('attendance_date','&gt;=',(context_today()-datetime.timedelta(weeks=4)).strftime('%Y-%m-%d'))]"/>
+                <filter string="Yesterday" name="date_yesterday" domain="[('attendance_date','=',(context_today() - relativedelta(days=1)).strftime('%Y-%m-%d'))]"/>
+                <filter string="Last 4 Weeks" name="date_last_4_weeks" domain="[('attendance_date','&gt;=',(context_today() - relativedelta(weeks=4)).strftime('%Y-%m-%d'))]"/>
 
                 <group expand="0" string="Group By">
                     <filter string="Student" name="group_student" context="{'group_by':'student_id'}"/>
@@ -59,12 +63,13 @@
         </field>
     </record>
 
-    <record id="action_attendance" model="ir.actions.act_window">
-        <field name="name">Attendance</field>
+    <!--TODO[IMP]: attendance_action-->
+    <record id="attendance_action" model="ir.actions.act_window">
+        <field name="name">Attendances</field>
         <field name="res_model">sms_module.attendance</field>
         <field name="view_mode">tree,form</field>
-        <field name="view_id" ref="view_attendance_tree"/>
-        <field name="search_view_id" ref="view_attendance_search"/>
+        <field name="view_id" ref="attendance_view_tree"/>
+        <field name="search_view_id" ref="attendance_view_search"/>
         <field name="context">{'search_default_date_today': 1}</field>
     </record>
 
