@@ -1,4 +1,4 @@
-from datetime import datetime
+from datetime import datetime, date
 
 from odoo import models, fields, api
 
@@ -26,7 +26,7 @@ class Student(models.Model):
     contact_details = fields.Char()
     address = fields.Char()
     guardian_details = fields.Char()
-    student_id = fields.Char(default='New', readonly=1)
+    student_id = fields.Char(string='Student ID', required=True, copy=False, readonly=True, index=True, default=lambda self: ('New'))
     national_doc = fields.Binary()
     image = fields.Image()
     activate = fields.Boolean(default=True)
@@ -41,6 +41,7 @@ class Student(models.Model):
     # endregion
 
     # region  Computed
+    age = fields.Integer(compute='_compute_age', store=True)
     # endregion
 
     # endregion
@@ -53,11 +54,21 @@ class Student(models.Model):
 
     @api.model
     def create(self, vals):
-        result = super(Student, self).create(vals)
-        if result.student_id == 'New':
-            result.student_id = self.env['ir.sequence'].next_by_code('sms_module.student_id')
-        return result
+        if vals.get('student_id', ('New')) == ('New'):
+            vals['student_id'] = self.env['ir.sequence'].next_by_code('sms_module.student') or ('New')
+        return super(Student, self).create(vals)
 
+    @api.depends('date_of_birth')
+    def _compute_age(self):
+        for record in self:
+            if record.date_of_birth:
+                today = date.today()
+                birth_date = fields.Date.from_string(record.date_of_birth)
+                record.age = today.year - birth_date.year - (
+                        (today.month, today.day) < (birth_date.month, birth_date.day)
+                )
+            else:
+                record.age = 0
     # endregion
 
     # region ---------------------- TODO[IMP]: Constrains and Onchanges ---------------------------

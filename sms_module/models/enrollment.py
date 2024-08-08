@@ -1,4 +1,6 @@
-from odoo import models, fields
+from odoo import models, fields, api
+from odoo.exceptions import ValidationError
+
 
 class Enrollment(models.Model):
 
@@ -23,6 +25,8 @@ class Enrollment(models.Model):
         ('completed', 'Completed'),
         ('cancelled', 'Cancelled')
     ], default='draft')
+    course_name = fields.Char(related='course_id.name', store=True)
+    course_duration = fields.Integer()
     # endregion
 
     # region  Special
@@ -41,7 +45,18 @@ class Enrollment(models.Model):
     # endregion
 
     # region ---------------------- TODO[IMP]: Constrains and Onchanges ---------------------------
+    @api.onchange('course_id')
+    def _onchange_course_id(self):
+        if self.course_id:
+            self.course_duration = self.course_id.duration
+        else:
+            self.course_duration = 0
 
+    @api.constrains('enrollment_date')
+    def _check_enrollment_date(self):
+        for record in self:
+            if record.enrollment_date and record.enrollment_date > fields.Date.today():
+                raise ValidationError("The enrollment date cannot be in the future.")
     # endregion
 
     # region ---------------------- TODO[IMP]: CRUD Methods -------------------------------------

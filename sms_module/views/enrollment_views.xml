@@ -11,6 +11,8 @@
                         <field name="enrollment_date"/>
                         <field name="student_id"/>
                         <field name="course_id"/>
+                        <field name="course_name"/>
+                        <field name="course_duration"/>
                         <field name="state" widget="statusbar" options="{'clickable': 1}"/>
                     </group>
                 </sheet>

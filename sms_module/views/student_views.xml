@@ -21,6 +21,7 @@
                             <field name="guardian_details"/>
                         </group>
                         <group>
+                            <field name="age" />
                             <field name="national_doc"/>
                             <field name="image" widget="image"/>
                             <field name="description"/>
