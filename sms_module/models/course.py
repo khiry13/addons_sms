@@ -28,13 +28,18 @@ class Course(models.Model):
     # endregion
 
     # region  Relational
+    enrollment_ids = fields.One2many('sms_module.enrollment', 'course_id')
     # endregion
 
     # region  Computed
+    number_of_enrollments = fields.Integer(compute='_compute_number_of_enrollments')
     # endregion
 
     # endregion
     # region ---------------------- TODO[IMP]: Compute methods ------------------------------------
+    def _compute_number_of_enrollments(self):
+        for record in self:
+            record.number_of_enrollments = len(record.enrollment_ids)
     # endregion
 
     # region ---------------------- TODO[IMP]: Constrains and Onchanges ---------------------------
@@ -45,6 +50,10 @@ class Course(models.Model):
     # endregion
 
     # region ---------------------- TODO[IMP]: Action Methods -------------------------------------
+    def action_view_enrollments(self):
+        action = self.env.ref('sms_module.enrollment_action').read()[0]
+        action['domain'] = [('course_id', '=', self.id)]
+        return action
     # endregion
 
     # region ---------------------- TODO[IMP]: Business Methods -------------------------------------

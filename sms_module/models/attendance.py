@@ -61,4 +61,10 @@ class Attendance(models.Model):
     @api.model
     def _default_checkin_time(self):
         return datetime.now()
+
+    @api.model
+    def update_student_attendance_status(self):
+        today = fields.Date.today()
+        records = self.search([('attendance_date', '=', today), ('status', 'not in', ['present', 'absent'])])
+        records.write({'status': 'absent'})
     # endregion

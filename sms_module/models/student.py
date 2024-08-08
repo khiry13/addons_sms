@@ -1,3 +1,5 @@
+from datetime import datetime
+
 from odoo import models, fields, api
 
 
@@ -28,6 +30,7 @@ class Student(models.Model):
     national_doc = fields.Binary()
     image = fields.Image()
     activate = fields.Boolean(default=True)
+    active = fields.Boolean(default=True)
     # endregion
 
     # region  Special
@@ -65,7 +68,25 @@ class Student(models.Model):
     # endregion
 
     # region ---------------------- TODO[IMP]: Action Methods -------------------------------------
+    def action_generate_attendance_today(self):
+        for student in self:
+            self.env['sms_module.attendance'].create({
+                'student_id': student.id,
+                'attendance_date': datetime.today().date(),
+                'status': 'present',
+            })
+
+
     # endregion
 
     # region ---------------------- TODO[IMP]: Business Methods -------------------------------------
+    def open_url(self):
+        url = 'https://www.google.com'  # Replace with your desired URL
+        return {
+            'type': 'ir.actions.act_url',
+            'target': 'new',
+            'url': url,
+        }
     # endregion
+
+

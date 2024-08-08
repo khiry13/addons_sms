@@ -6,7 +6,11 @@
         <field name="model">sms_module.student</field>
         <field name="arch" type="xml">
             <form>
+                <header>
+                    <button name="open_url" string="Open URL" type="object"/>
+                </header>
                 <sheet>
+                    <widget name="web_ribbon" title="Archived" bg_color="text-bg-danger" invisible="active" />
                     <group>
                         <group>
                             <field name="name"/>
@@ -20,6 +24,7 @@
                             <field name="national_doc"/>
                             <field name="image" widget="image"/>
                             <field name="description"/>
+                            <field name="active"/>
                         </group>
                     </group>
                     <notebook>
@@ -48,6 +53,9 @@
         <field name="model">sms_module.student</field>
         <field name="arch" type="xml">
             <tree string="Student" default_order="name, student_id">
+                <header>
+                    <button name="action_generate_attendance_today" type="object" string="Generate Attendance" class="oe_highlight"/>
+                </header>
                 <field name="name"/>
                 <field name="date_of_birth"/>
                 <field name="student_id"/>

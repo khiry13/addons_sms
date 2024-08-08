@@ -43,7 +43,6 @@ Long description of module's purpose
     'demo': [
         'demo/demo.xml',
     ],
-
     'application': True,
 }
 

@@ -6,6 +6,8 @@
         <field name="model">sms_module.course</field>
         <field name="arch" type="xml">
             <form string="Course">
+                <field name="number_of_enrollments" widget="statinfo"/>
+                <button name="action_view_enrollments" string="View Enrollments" type="object" icon="fa-users"/>
                 <sheet>
                     <widget name="web_ribbon" title="Featured" bg_color="text-bg-success" invisible="is_featured != True" />
                     <group>
@@ -61,5 +63,5 @@
         <field name="view_id" ref="course_view_tree"/>
         <field name="search_view_id" ref="course_view_search"/>
     </record>
-    
+
 </odoo>

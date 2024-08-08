@@ -73,4 +73,12 @@
         <field name="context">{'search_default_date_today': 1}</field>
     </record>
 
+    <record id="update_attendance_status_server_action" model="ir.actions.server">
+    <field name="name">Update Student Attendance Status</field>
+    <field name="model_id" ref="model_sms_module_attendance"/>
+    <field name="binding_model_id" ref="model_sms_module_attendance"/>
+    <field name="state">code</field>
+    <field name="code">env['sms_module.attendance'].update_student_attendance_status()</field>
+</record>
+
 </odoo>
