@@ -69,6 +69,14 @@ class Student(models.Model):
                 )
             else:
                 record.age = 0
+
+    @api.depends('name', 'student_id')
+    def _compute_display_name(self):
+        for record in self:
+            if self.env.context.get('display_id'):
+                record.display_name = f'[{record.student_id}] {record.name}'
+            else:
+                record.display_name = record.name
     # endregion
 
     # region ---------------------- TODO[IMP]: Constrains and Onchanges ---------------------------
