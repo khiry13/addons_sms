@@ -39,5 +39,10 @@ access_attendance_student,access_attendance_student,model_sms_module_attendance,
 access_attendance_parent,access_attendance_parent,model_sms_module_attendance,sms_module.group_sms_parent,1,0,0,0
 access_attendance_readonly,access_attendance_readonly,model_sms_module_attendance,sms_module.group_sms_readonly,1,0,0,0
 
+access_extended_course,access_extended_course,model_sms_module_extended_course,base.group_user,1,1,1,1
+access_emergency_contact,access_emergency_contact,model_sms_module_emergency_contact,base.group_user,1,1,1,1
+
+
 access_enroll_wizard,access.enroll.wizard,model_enroll_wizard,sms_module.group_sms_registrar,1,1,1,1
 access_enroll_wizard,access.enroll.wizard,model_enroll_wizard,sms_module.group_sms_administrator,1,1,1,1
+

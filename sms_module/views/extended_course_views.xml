@@ -1,0 +1,37 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <!--TODO[IMP]: extended_course_view_form-->
+    <record id="extended_course_view_form" model="ir.ui.view">
+        <field name="name">sms_module.extended_course.form</field>
+        <field name="model">sms_module.extended_course</field>
+        <field name="arch" type="xml">
+            <form>
+                <sheet>
+                    <group>
+                        <field name="name"/>
+                        <field name="course_prerequisite"/>
+                    </group>
+                </sheet>
+            </form>
+        </field>
+    </record>
+
+    <!--TODO[IMP]: extended_course_view_tree-->
+    <record id="extended_course_view_tree" model="ir.ui.view">
+        <field name="name">sms_module.extended_course.tree</field>
+        <field name="model">sms_module.extended_course</field>
+        <field name="arch" type="xml">
+            <tree>
+                <field name="name"/>
+                <field name="course_prerequisite"/>
+            </tree>
+        </field>
+    </record>
+
+    <!--TODO[IMP]: extended_course_action-->
+    <record id="extended_course_action" model="ir.actions.act_window">
+        <field name="name">Extended Courses</field>
+        <field name="res_model">sms_module.extended_course</field>
+        <field name="view_mode">tree,form</field>
+    </record>
+</odoo>

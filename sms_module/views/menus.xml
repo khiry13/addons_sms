@@ -16,5 +16,10 @@
         <menuitem id="grade_menu" name="Grades" parent="op_sub_menu" action="grade_action" sequence="4"/>
 
         <menuitem id="attendance_menu" name="Attendance" parent="op_sub_menu" action="attendance_action" sequence="5"/>
+
+        <menuitem id="extended_course_menu" name="Extended Courses" parent="op_sub_menu" action="extended_course_action" sequence="6"/>
+
+        <menuitem id="emergency_contact_menu" name="Emergency Contacts" parent="op_sub_menu" action="emergency_contact_action" sequence="7"/>
+
     </data>
 </odoo>

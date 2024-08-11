@@ -32,6 +32,9 @@ Long description of module's purpose
         'views/enrollment_views.xml',
         'views/grade_views.xml',
         'views/attendance_views.xml',
+        'views/res_partner_views.xml',
+        'views/extended_course_views.xml',
+        'views/emergency_contact_views.xml',
         'views/menus.xml',
 
         'wizard/make_enroll_wizard_views.xml'
@@ -45,4 +48,3 @@ Long description of module's purpose
     ],
     'application': True,
 }
-
