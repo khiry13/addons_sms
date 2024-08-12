@@ -35,6 +35,7 @@ Long description of module's purpose
         'views/res_partner_views.xml',
         'views/extended_course_views.xml',
         'views/emergency_contact_views.xml',
+        'views/sms_config_settings_views.xml',
         'views/menus.xml',
 
         'wizard/make_enroll_wizard_views.xml'

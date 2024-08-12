@@ -48,7 +48,7 @@ class Enrollment(models.Model):
     @api.onchange('course_id')
     def _onchange_course_id(self):
         if self.course_id:
-            self.course_duration = self.course_id.duration
+            self.course_duration = self.course_id.course_duration
         else:
             self.course_duration = 0
 

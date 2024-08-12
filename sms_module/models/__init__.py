@@ -8,3 +8,4 @@ from . import grade
 from . import res_partner_inherit
 from . import extended_course
 from . import emergency_contact
+from . import sms_config_settings

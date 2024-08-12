@@ -7,6 +7,8 @@
 
         <menuitem id="enroll_student_menu" name="Enroll Student" parent="top_menu" sequence="2" />
 
+        <menuitem id="sms_settings_menu" name="Settings" parent="top_menu" action="sms_config_settings_action" sequence="3"/>
+
         <menuitem id="student_menu" name="Students" parent="op_sub_menu" action="student_action" sequence="1"/>
 
         <menuitem id="course_menu" name="Courses" parent="op_sub_menu" action="course_action" sequence="2"/>
@@ -20,6 +22,7 @@
         <menuitem id="extended_course_menu" name="Extended Courses" parent="op_sub_menu" action="extended_course_action" sequence="6"/>
 
         <menuitem id="emergency_contact_menu" name="Emergency Contacts" parent="op_sub_menu" action="emergency_contact_action" sequence="7"/>
+
 
     </data>
 </odoo>

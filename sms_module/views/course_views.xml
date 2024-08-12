@@ -14,7 +14,7 @@
                         <field name="name"/>
                         <field name="description"/>
                         <field name="syllabus"/>
-                        <field name="duration"/>
+                        <field name="course_duration"/>
                         <field name="prerequisites"/>
                         <field name="is_featured"/>
                     </group>
@@ -36,7 +36,7 @@
             <tree string="Course">
                 <field name="name"/>
                 <field name="description"/>
-                <field name="duration"/>
+                <field name="course_duration"/>
                 <field name="is_featured"/>
             </tree>
         </field>
@@ -50,7 +50,7 @@
             <search>
                 <field name="name"/>
                 <field name="description"/>
-                <field name="duration"/>
+                <field name="course_duration"/>
             </search>
         </field>
     </record>

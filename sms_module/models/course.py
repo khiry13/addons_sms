@@ -1,4 +1,5 @@
-from odoo import models, fields
+from odoo import models, fields, api
+
 
 class Course(models.Model):
 
@@ -19,7 +20,7 @@ class Course(models.Model):
     name = fields.Char()
     description = fields.Char()
     syllabus = fields.Char()
-    duration = fields.Integer()
+    course_duration = fields.Integer(string='Course Duration', default=lambda self: self._default_course_duration())
     prerequisites = fields.Char()
     is_featured = fields.Boolean()
     # endregion
@@ -57,4 +58,8 @@ class Course(models.Model):
     # endregion
 
     # region ---------------------- TODO[IMP]: Business Methods -------------------------------------
+    @api.model
+    def _default_course_duration(self):
+        return int(self.env['ir.config_parameter'].sudo().get_param('sms_module.default_course_duration', default=30))
+
     # endregion

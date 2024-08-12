@@ -1,0 +1,33 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <!--TODO[IMP]: sms_config_settings_view_form-->
+    <record id="sms_config_settings_view_form" model="ir.ui.view">
+        <field name="name">sms.config.settings.form</field>
+        <field name="model">res.config.settings</field>
+        <field name="priority" eval="15"/>
+        <field name="inherit_id" ref="base.res_config_settings_view_form" />
+        <field name="arch" type="xml">
+            <xpath expr="//form" position="inside">
+                <app data-string="SMS Management" string="SMS Management" name="course_settings">
+                    <block title="SMS Management Settings" name="sms_management">
+                        <setting string="Default Course Duration" help="Select the Course duration" id="course_duration_setting">
+                            <field name="default_course_duration"/>
+                        </setting>
+                        <setting string="Maximum Number of Students per Course" help="Select the maximum number of student per Course" id="max_student_per_course_setting">
+                            <field name="max_students_per_course"/>
+                        </setting>
+                    </block>
+                </app>
+            </xpath>
+        </field>
+    </record>
+
+    <!--TODO[IMP]: sms_config_settings_action-->
+    <record id="sms_config_settings_action" model="ir.actions.act_window">
+        <field name="name">SMS Settings</field>
+        <field name="type">ir.actions.act_window</field>
+        <field name="res_model">res.config.settings</field>
+        <field name="view_mode">form</field>
+        <field name="target">inline</field>
+    </record>
+</odoo>
