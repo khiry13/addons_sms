@@ -1,0 +1,39 @@
+<odoo>
+    <!-- Student Records -->
+    <record id="student_1" model="sms_module.student">
+        <field name="name">John Doe</field>
+        <field name="age">20</field>
+        <field name="contact_details">johndoe@example.com</field>
+    </record>
+    <record id="student_2" model="sms_module.student">
+        <field name="name">Jane Smith</field>
+        <field name="age">22</field>
+        <field name="contact_details">janesmith@example.com</field>
+    </record>
+
+    <!-- Course Records -->
+    <record id="course_1" model="sms_module.course">
+        <field name="name">Computer Science 101</field>
+        <field name="course_duration">6</field>
+        <field name="description">Introduction to Computer Science</field>
+    </record>
+    <record id="course_2" model="sms_module.course">
+        <field name="name">Mathematics 101</field>
+        <field name="course_duration">4</field>
+        <field name="description">Basics of Mathematics</field>
+    </record>
+
+    <!-- Enrollment Records -->
+    <record id="enrollment_1" model="sms_module.enrollment">
+        <field name="student_id" ref="student_1"/>
+        <field name="course_id" ref="course_1"/>
+        <field name="enrollment_date">2024-01-10</field>
+        <field name="state">confirmed</field>
+    </record>
+    <record id="enrollment_2" model="sms_module.enrollment">
+        <field name="student_id" ref="student_2"/>
+        <field name="course_id" ref="course_2"/>
+        <field name="enrollment_date">2024-01-12</field>
+        <field name="state">completed</field>
+    </record>
+</odoo>

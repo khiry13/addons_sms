@@ -95,7 +95,18 @@ class Student(models.Model):
                 'status': 'present',
             })
 
-
+    def action_trigger_students_age(self):
+        age_threshold = 18
+        adult_students = self.with_context(age_threshold=age_threshold).get_adult_students()
+        # Display the filtered students in a popup view (e.g., a tree view)
+        return {
+            'name': 'Adult Students',
+            'type': 'ir.actions.act_window',
+            'res_model': 'sms_module.student',
+            'view_mode': 'tree',
+            'target': 'new',
+            'domain': [('id', 'in', adult_students.ids)],
+        }
     # endregion
 
     # region ---------------------- TODO[IMP]: Business Methods -------------------------------------
@@ -106,6 +117,11 @@ class Student(models.Model):
             'target': 'new',
             'url': url,
         }
+
+    def get_adult_students(self):
+        age_threshold = self.env.context.get('age_threshold')
+        adult_students = self.search([('age', '>=', age_threshold)])
+        return adult_students
     # endregion
 
 
