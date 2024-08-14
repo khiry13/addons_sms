@@ -1,0 +1,122 @@
+<odoo>
+    <record id="student_report_action" model="ir.actions.report">
+      <field name="name">Student Report</field>
+      <field name="model">sms_module.student</field>
+      <field name="report_type">qweb-pdf</field>
+      <field name="binding_model_id" ref="model_sms_module_student" />
+      <field name="binding_type">report</field>
+      <field name="report_name">sms_module.student_report_template</field>
+      <field name="print_report_name">'Student_Report_' + object.name + '_' + time.strftime('%Y-%m-%d')</field>
+    </record>
+  <template id="student_report_template">
+    <t t-call="web.html_container" >
+      <t t-call="web.basic_layout">
+        <t t-foreach="docs" t-as="o">
+          <div class="page">
+            <h2>Student Report</h2>
+
+            <!-- Student Profile Section -->
+            <div>
+              <h3>Student Profile</h3>
+              <p><strong>Name:</strong> <span t-esc="o.name"/></p>
+              <p><strong>Email:</strong> <span t-esc="o.contact_details"/></p>
+              <p><strong>Date of Birth:</strong> <span t-esc="o.date_of_birth"/></p>
+              <p><strong>Gender:</strong> <span t-esc="o.gender"/></p>
+            </div>
+
+            <!-- Courses Enrolled Section -->
+            <div>
+              <h3>Courses Enrolled</h3>
+              <table class="table table-bordered">
+                <thead>
+                  <tr>
+                    <th>Course Name</th>
+    <!--                <th>Instructor</th>-->
+                    <th>Enrollment Date</th>
+                    <th>Status</th>
+                  </tr>
+                </thead>
+                <tbody>
+                  <t t-foreach="o.enrollment_ids" t-as="enrollment">
+                    <tr>
+                      <td t-esc="enrollment.course_id.name"/>
+    <!--                  <td t-esc="enrollment.course_id.instructor_id.name"/>-->
+                      <td t-esc="enrollment.enrollment_date"/>
+                      <td t-esc="enrollment.state"/>
+                    </tr>
+                  </t>
+                </tbody>
+              </table>
+            </div>
+
+            <!-- Grades Section -->
+            <div>
+              <h3>Grades</h3>
+              <table class="table table-bordered">
+                <thead>
+                  <tr>
+                    <th>Course Name</th>
+                    <th>Grade</th>
+                  </tr>
+                </thead>
+                <tbody>
+                  <t t-foreach="o.grade_ids" t-as="grade">
+                    <tr>
+                      <td t-esc="grade.course_id.name"/>
+                      <td t-esc="grade.grade"/>
+                    </tr>
+                  </t>
+                </tbody>
+              </table>
+            </div>
+
+            <!-- Attendance Section -->
+            <div>
+              <h3>Attendance</h3>
+              <table class="table table-bordered">
+                <thead>
+                  <tr>
+                    <th>Date</th>
+                    <th>Status</th>
+                    <th>Absence Notes</th>
+                  </tr>
+                </thead>
+                <tbody>
+                  <t t-foreach="o.attendance_ids" t-as="attendance">
+                    <tr>
+                      <td t-esc="attendance.attendance_date"/>
+                      <td t-esc="attendance.status"/>
+                      <td t-esc="attendance.absence_notes"/>
+                    </tr>
+                  </t>
+                </tbody>
+              </table>
+            </div>
+
+            <!-- Additional Notes Section -->
+            <div>
+              <h3>Additional Notes</h3>
+<!--              <p t-esc="o.notes"/>-->
+            </div>
+
+            <!-- Report Generation Date -->
+            <div>
+              <p><strong>Report Generated on:</strong> <span t-esc="time.strftime('%B %d, %Y')"/></p>
+            </div>
+          </div>
+        </t>
+      </t>
+    </t>
+  </template>
+
+<!--  <report-->
+<!--      id="student_report_action"-->
+<!--      model="sms_module.student"-->
+<!--      string="Student Report"-->
+<!--      report_type="qweb-pdf"-->
+<!--      name="sms_module.student_report_template"-->
+<!--      file="sms_module.student_report_template"-->
+<!--      print_report_name="'Student_Report_' + object.name + '_' + time.strftime('%Y-%m-%d')"-->
+<!--  />-->
+
+</odoo>

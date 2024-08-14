@@ -23,6 +23,10 @@ class Student(models.Model):
     name = fields.Char()
     description = fields.Html(string='Description')
     date_of_birth = fields.Date()
+    gender = fields.Selection([
+        ('male', 'Male'),
+        ('female', 'Female')
+    ])
     contact_details = fields.Char()
     address = fields.Char()
     guardian_details = fields.Char()
@@ -38,6 +42,8 @@ class Student(models.Model):
 
     # region  Relational
     enrollment_ids = fields.One2many('sms_module.enrollment', 'student_id', string='Enrollments')
+    grade_ids = fields.One2many('sms_module.grade', 'student_id', string='Grades')
+    attendance_ids = fields.One2many('sms_module.attendance', 'student_id', string='Attendences')
     # endregion
 
     # region  Computed

@@ -38,6 +38,8 @@ Long description of module's purpose
         'views/sms_config_settings_views.xml',
         'views/menus.xml',
 
+        'reports/student_report.xml',
+
         'demo/demo_data.xml',
 
         'wizard/make_enroll_wizard_views.xml'
