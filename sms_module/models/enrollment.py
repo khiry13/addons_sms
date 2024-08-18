@@ -36,6 +36,8 @@ class Enrollment(models.Model):
     # region  Relational
     student_id = fields.Many2one('sms_module.student', domain="[('activate', '=', True)]")
     course_id = fields.Many2one('sms_module.course')
+    teacher_id = fields.Many2one('res.users', string="Teacher", required=True)
+
     # endregion
 
     # region  Computed

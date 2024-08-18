@@ -34,6 +34,7 @@ class Attendance(models.Model):
     # region  Relational
     student_id = fields.Many2one('sms_module.student')
     course_id = fields.Many2one('sms_module.course')
+    teacher_id = fields.Many2one('res.users', string="Teacher", required=True)
     # endregion
 
     # region  Computed
