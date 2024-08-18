@@ -1,4 +1,5 @@
 from odoo import models, fields, api
+from odoo import _, exceptions
 from odoo.exceptions import ValidationError
 
 
@@ -56,7 +57,7 @@ class Enrollment(models.Model):
     def _check_enrollment_date(self):
         for record in self:
             if record.enrollment_date and record.enrollment_date > fields.Date.today():
-                raise ValidationError("The enrollment date cannot be in the future.")
+                raise exceptions.ValidationError(_("The enrollment date cannot be in the future."))
     # endregion
 
     # region ---------------------- TODO[IMP]: CRUD Methods -------------------------------------
