@@ -1,0 +1,14 @@
+<odoo>
+    <record id="view_student_wizard_form" model="ir.ui.view">
+        <field name="name">sms_module.student_wizard.form</field>
+        <field name="model">sms_module.student_wizard</field>
+        <field name="arch" type="xml">
+            <form string="Student Wizard">
+                <group>
+                    <field name="student_ids" widget="many2many_checkboxes" />
+                </group>
+            </form>
+        </field>
+    </record>
+
+</odoo>

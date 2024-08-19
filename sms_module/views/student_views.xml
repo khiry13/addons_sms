@@ -9,6 +9,7 @@
                 <header>
                     <button name="open_url" string="Open URL" type="object"/>
                     <button name="action_trigger_students_age" type="object" string="Adult Students"/>
+                    <button name="open_student_wizard" type="object" string="Select Interests" class="btn-primary"/>
                 </header>
                 <sheet>
                     <widget name="web_ribbon" title="Archived" bg_color="text-bg-danger" invisible="active" />
@@ -16,13 +17,20 @@
                         <group>
                             <field name="name"/>
                             <field name="date_of_birth"/>
-                            <field name="student_id"/>
+                            <field name="student_id" widget="CopyClipboardChar"/>
+                            <field name="profile_link" widget="CopyClipboardURL"/>
+                            <field name="gender" widget="radio"/>
                             <field name="contact_details"/>
                             <field name="address"/>
                             <field name="guardian_details"/>
                         </group>
                         <group>
                             <field name="age" />
+                            <field name="priority_level" widget="priority"/>
+                            <field name="attendance_percentage" widget="percentpie" />
+                            <field name="enrollment_ids" widget="many2many_tags"/>
+                            <field name="submit_evaluation" widget="boolean" />
+                            <field name="mood_feedback" widget="char_emojis" />
                             <field name="national_doc"/>
                             <field name="image" widget="image"/>
                             <field name="description"/>
@@ -59,10 +67,12 @@
                     <button name="action_generate_attendance_today" type="object" string="Generate Attendance" class="oe_highlight"/>
                     <button name="action_trigger_students_age" type="object" string="Adult Students"/>
                 </header>
+                <field name="priority" widget="handle"/>
                 <field name="display_name" />
                 <field name="name"/>
                 <field name="date_of_birth"/>
                 <field name="student_id"/>
+                <field name="priority" string="Priority" />
             </tree>
         </field>
     </record>

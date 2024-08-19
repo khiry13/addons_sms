@@ -42,7 +42,8 @@ Long description of module's purpose
 
         'demo/demo_data.xml',
 
-        'wizard/make_enroll_wizard_views.xml'
+        'wizard/make_enroll_wizard_views.xml',
+        'wizard/student_wizard_views.xml'
 
         # 'views/views.xml',
         # 'views/templates.xml',

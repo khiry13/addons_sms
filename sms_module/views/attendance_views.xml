@@ -10,6 +10,7 @@
                     <group>
                         <field name="attendance_date"/>
                         <field name="status"/>
+                        <field name="is_present" widget="boolean_toggle" options="{'terminology': 'Present/Absent'}"/>
                         <field name="student_id" context="{'display_id': True}"/>
                         <field name="course_id"/>
                         <field name="absence_notes" invisible="status == 'present'"/>

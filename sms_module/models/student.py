@@ -26,7 +26,7 @@ class Student(models.Model):
     gender = fields.Selection([
         ('male', 'Male'),
         ('female', 'Female')
-    ])
+    ], default='male')
     contact_details = fields.Char()
     address = fields.Char()
     guardian_details = fields.Char()
@@ -35,6 +35,18 @@ class Student(models.Model):
     image = fields.Image()
     activate = fields.Boolean(default=True)
     active = fields.Boolean(default=True)
+    attendance_percentage = fields.Float()
+    priority = fields.Integer()
+    priority_level = fields.Selection([
+            ('0', 'Normal'),
+            ('1', 'Low'),
+            ('2', 'Medium'),
+            ('3', 'High')
+    ])
+    submit_evaluation = fields.Boolean(string="Submit Evaluation", default=False)
+    profile_link = fields.Char(help="URL of the student's profile")
+    mood_feedback = fields.Char(help="Visual feedback on student moods using emojis")
+
     # endregion
 
     # region  Special
@@ -113,6 +125,13 @@ class Student(models.Model):
             'target': 'new',
             'domain': [('id', 'in', adult_students.ids)],
         }
+
+    @api.model
+    def submit_student_evaluation(self):
+        for record in self:
+            if not record.submit_evaluation:
+
+                record.submit_evaluation = True
     # endregion
 
     # region ---------------------- TODO[IMP]: Business Methods -------------------------------------
@@ -128,6 +147,15 @@ class Student(models.Model):
         age_threshold = self.env.context.get('age_threshold')
         adult_students = self.search([('age', '>=', age_threshold)])
         return adult_students
+
+    def open_student_wizard(self):
+        return {
+            'type': 'ir.actions.act_window',
+            'name': 'Select Interests',
+            'res_model': 'sms_module.student_wizard',
+            'view_mode': 'form',
+            'target': 'new',
+        }
     # endregion
 
 

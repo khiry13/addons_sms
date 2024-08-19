@@ -48,3 +48,6 @@ access_sms_config_settings,access_sms_config_settings,model_res_config_settings,
 access_enroll_wizard,access.enroll.wizard,model_enroll_wizard,sms_module.group_sms_registrar,1,1,1,1
 access_enroll_wizard,access.enroll.wizard,model_enroll_wizard,sms_module.group_sms_administrator,1,1,1,1
 
+access_student_wizard_user,access_student_wizard_user,model_sms_module_student_wizard,base.group_user,1,1,1,0
+
+

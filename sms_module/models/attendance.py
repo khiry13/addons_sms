@@ -38,10 +38,15 @@ class Attendance(models.Model):
     # endregion
 
     # region  Computed
+    is_present = fields.Boolean(string='Is Present', compute='_compute_is_present')
     # endregion
 
     # endregion
     # region ---------------------- TODO[IMP]: Compute methods ------------------------------------
+    @api.depends('status')
+    def _compute_is_present(self):
+        for record in self:
+            record.is_present = record.status == 'present'
     # endregion
 
     # region ---------------------- TODO[IMP]: Constrains and Onchanges ---------------------------

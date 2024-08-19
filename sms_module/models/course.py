@@ -23,6 +23,7 @@ class Course(models.Model):
     course_duration = fields.Integer(string='Course Duration', default=lambda self: self._default_course_duration())
     prerequisites = fields.Char()
     is_featured = fields.Boolean()
+    completion_percentage = fields.Float()
     # endregion
 
     # region  Special
