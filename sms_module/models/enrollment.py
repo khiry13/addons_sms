@@ -7,6 +7,7 @@ class Enrollment(models.Model):
 
     # region ---------------------- TODO[IMP]: Private Attributes --------------------------------
     _name = "sms_module.enrollment"
+    _inherit = ['mail.thread', 'mail.activity.mixin']
     _description = "Enrollment"
     _sql_constraints = [
         ('unique_student_course', 'unique(student_id, course_id)',
@@ -25,7 +26,7 @@ class Enrollment(models.Model):
         ('confirmed', 'Confirmed'),
         ('completed', 'Completed'),
         ('cancelled', 'Cancelled')
-    ], default='draft')
+    ], default='draft', tracking=True)
     course_name = fields.Char(related='course_id.name', store=True)
     course_duration = fields.Integer()
     # endregion
@@ -69,4 +70,14 @@ class Enrollment(models.Model):
     # endregion
 
     # region ---------------------- TODO[IMP]: Business Methods -------------------------------------
+    def create(self, vals):
+        res = super(Enrollment, self).create(vals)
+        student = res.student_id
+        course = res.course_id
+
+        message = f"Student '{student.name}' has been enrolled in the course '{course.name}' on {res.enrollment_date}."
+
+        student.message_post(body=message)
+
+        return res
     # endregion

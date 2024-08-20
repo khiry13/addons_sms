@@ -20,14 +20,14 @@ class Student(models.Model):
 
     # region ---------------------- TODO[IMP]: Fields Declaration ---------------------------------
     # region  Basic
-    name = fields.Char()
+    name = fields.Char(tracking=True)
     description = fields.Html(string='Description')
     date_of_birth = fields.Date()
     gender = fields.Selection([
         ('male', 'Male'),
         ('female', 'Female')
     ], default='male')
-    contact_details = fields.Char()
+    contact_details = fields.Char(tracking=True)
     address = fields.Char()
     guardian_details = fields.Char()
     student_id = fields.Char(string='Student ID', required=True, copy=False, readonly=True, index=True, default=lambda self: ('New'))
