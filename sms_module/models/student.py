@@ -46,6 +46,7 @@ class Student(models.Model):
     submit_evaluation = fields.Boolean(string="Submit Evaluation", default=False)
     profile_link = fields.Char(help="URL of the student's profile")
     mood_feedback = fields.Char(help="Visual feedback on student moods using emojis")
+    course_level = fields.Integer(default=0)
 
     # endregion
 
@@ -56,10 +57,12 @@ class Student(models.Model):
     enrollment_ids = fields.One2many('sms_module.enrollment', 'student_id', string='Enrollments')
     grade_ids = fields.One2many('sms_module.grade', 'student_id', string='Grades')
     attendance_ids = fields.One2many('sms_module.attendance', 'student_id', string='Attendences')
+    preferred_course_id = fields.Many2one('sms_module.course')
     # endregion
 
     # region  Computed
     age = fields.Integer(compute='_compute_age', store=True)
+    preferred_course_domain = fields.Char(compute='_compute_preferred_course_domain', store=False)
     # endregion
 
     # endregion
@@ -95,10 +98,26 @@ class Student(models.Model):
                 record.display_name = f'[{record.student_id}] {record.name}'
             else:
                 record.display_name = record.name
+
+    @api.depends('course_level')
+    def _compute_preferred_course_domain(self):
+        for student in self:
+            if student.course_level == 0:
+                # Show all courses if course_level is 0
+                student.preferred_course_domain = []
+            else:
+                # Filter courses based on the selected course_level
+                student.preferred_course_domain = [('course_level', '=', student.course_level)]
     # endregion
 
     # region ---------------------- TODO[IMP]: Constrains and Onchanges ---------------------------
-
+    # @api.onchange('course_level')
+    # def _onchange_course_level(self):
+    #     if self.course_level == 0:
+    #         domain = [('id', '!=', False)]  # Show all courses
+    #     else:
+    #         domain = [('level', '=', self.course_level)]  # Filter courses based on level
+    #     return {'domain': {'preferred_course_id': domain}}
     # endregion
 
     # region ---------------------- TODO[IMP]: CRUD Methods -------------------------------------

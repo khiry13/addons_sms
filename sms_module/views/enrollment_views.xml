@@ -6,6 +6,9 @@
         <field name="model">sms_module.enrollment</field>
         <field name="arch" type="xml">
             <form string="Enrollment">
+                <header>
+                    <field name="state" widget="statusbar" options="{'clickable': 1}"/>
+                </header>
                 <sheet>
                     <group>
                         <field name="enrollment_date"/>
@@ -13,7 +16,7 @@
                         <field name="course_id"/>
                         <field name="course_name"/>
                         <field name="course_duration"/>
-                        <field name="state" widget="statusbar" options="{'clickable': 1}"/>
+                        <field name="teacher_id" />
                     </group>
                 </sheet>
             </form>

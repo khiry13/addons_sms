@@ -20,6 +20,9 @@
                             <field name="student_id" widget="CopyClipboardChar"/>
                             <field name="profile_link" widget="CopyClipboardURL"/>
                             <field name="gender" widget="radio"/>
+                            <field name="course_level"/>
+                            <field name="preferred_course_domain" invisible="True"/>
+                            <field name="preferred_course_id" domain="preferred_course_domain"/>
                             <field name="contact_details"/>
                             <field name="address"/>
                             <field name="guardian_details"/>
@@ -62,7 +65,7 @@
         <field name="name">sms_module.student.tree</field>
         <field name="model">sms_module.student</field>
         <field name="arch" type="xml">
-            <tree string="Student" default_order="name, student_id">
+            <tree string="Student">
                 <header>
                     <button name="action_generate_attendance_today" type="object" string="Generate Attendance" class="oe_highlight"/>
                     <button name="action_trigger_students_age" type="object" string="Adult Students"/>
@@ -72,7 +75,7 @@
                 <field name="name"/>
                 <field name="date_of_birth"/>
                 <field name="student_id"/>
-                <field name="priority" string="Priority" />
+                <field name="priority_level" />
             </tree>
         </field>
     </record>

@@ -23,6 +23,7 @@ Long description of module's purpose
     # always loaded
     'data': [
         'security/groups.xml',
+        'security/security.xml',
         'security/ir.model.access.csv',
 
         'data/student_sequence.xml',
