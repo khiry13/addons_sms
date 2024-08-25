@@ -2,6 +2,10 @@ from datetime import datetime, date
 
 from odoo import models, fields, api
 
+import logging
+
+_logger = logging.getLogger(__name__)
+
 
 class Attendance(models.Model):
 
@@ -73,4 +77,30 @@ class Attendance(models.Model):
         today = fields.Date.today()
         records = self.search([('attendance_date', '=', today), ('status', 'not in', ['present', 'absent'])])
         records.write({'status': 'absent'})
+
+    @api.model
+    def _cron_generate_absent_records(self):
+        today = fields.Date.context_today(self)
+        students = self.env['sms_module.student'].search([])
+        absent_count = 0
+        try:
+            for student in students:
+                attendance = self.env['sms_module.attendance'].search([
+                    ('student_id', '=', student.id),
+                    ('attendance_date', '=', today)
+                ])
+
+                if not attendance:
+                    self.create({
+                        'student_id': student.id,
+                        'attendance_date': today,
+                        'status': 'absent'
+                    })
+                    absent_count += 1
+
+            _logger.info(f'Cron Job: {absent_count} absent records created for unassigned students on {today}.')
+        except Exception as e:
+            _logger.error(f'Error in Cron Job: {e}')
+
+
     # endregion

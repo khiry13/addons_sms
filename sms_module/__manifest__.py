@@ -27,6 +27,7 @@ Long description of module's purpose
         'security/ir.model.access.csv',
 
         'data/student_sequence.xml',
+        'data/cron_job_data.xml',
 
         'views/student_views.xml',
         'views/course_views.xml',
