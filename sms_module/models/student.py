@@ -35,7 +35,7 @@ class Student(models.Model):
     image = fields.Image()
     activate = fields.Boolean(default=True)
     active = fields.Boolean(default=True)
-    attendance_percentage = fields.Float()
+    attendance_percentage = fields.Float(compute='_compute_attendance_percentage', store=True)
     priority = fields.Integer()
     priority_level = fields.Selection([
             ('0', 'Normal'),
@@ -108,6 +108,16 @@ class Student(models.Model):
             else:
                 # Filter courses based on the selected course_level
                 student.preferred_course_domain = [('course_level', '=', student.course_level)]
+
+    @api.depends('attendance_ids.is_present')
+    def _compute_attendance_percentage(self):
+        for student in self:
+            total_days = len(student.attendance_ids)
+            if total_days > 0:
+                present_days = len(student.attendance_ids.filtered(lambda r: r.is_present))
+                student.attendance_percentage = (present_days / total_days) * 100
+            else:
+                student.attendance_percentage = 0
     # endregion
 
     # region ---------------------- TODO[IMP]: Constrains and Onchanges ---------------------------

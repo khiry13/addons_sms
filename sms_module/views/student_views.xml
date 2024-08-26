@@ -80,6 +80,23 @@
         </field>
     </record>
 
+    <!--TODO[IMP]: student_view_pivot-->
+    <record id="student_view_pivot" model="ir.ui.view">
+    <field name="name">sms_module.student.pivot</field>
+    <field name="model">sms_module.student</field>
+    <field name="arch" type="xml">
+        <pivot string="Student Analysis">
+            <field name="attendance_percentage" type="measure"/>
+<!--            <field name="enrollment_count" type="measure"/>-->
+<!--            <field name="course_id" type="col"/>-->
+<!--            <field name="grade_level_id" type="row"/>-->
+<!--            <field name="attendance_status" type="row"/>-->
+            <field name="student_id" type="row"/>
+            <field name="date_of_birth" type="row"/>
+        </pivot>
+    </field>
+</record>
+
     <!--TODO[IMP]: student_view_search-->
     <record id="student_view_search" model="ir.ui.view">
         <field name="name">sms_module.student.search</field>
@@ -97,7 +114,7 @@
     <record id="student_action" model="ir.actions.act_window">
         <field name="name">Students</field>
         <field name="res_model">sms_module.student</field>
-        <field name="view_mode">tree,form</field>
+        <field name="view_mode">tree,form,pivot</field>
         <field name="view_id" ref="student_view_tree"/>
         <field name="search_view_id" ref="student_view_search"/>
         <field name="context">{'display_id': True}</field>
