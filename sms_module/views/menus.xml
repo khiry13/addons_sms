@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <odoo>
     <data>
-        <menuitem id="top_menu" name="Student Management System" sequence="1"/>
+        <menuitem id="top_menu" name="Student Management System" sequence="1" web_icon="sms_module,static/description/icon.png"/>
 
         <menuitem id="op_sub_menu" name="Operation" parent="top_menu" sequence="1" />
 
