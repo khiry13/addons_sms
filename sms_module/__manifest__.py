@@ -50,7 +50,13 @@ Long description of module's purpose
         # 'views/views.xml',
         # 'views/templates.xml',
     ],
-    # only loaded in demonstration mode
+    'assets': {
+        'web.assets_backend': [
+            'sms_module/static/src/js/age_field_widget.js',
+            'sms_module/static/src/xml/age_field_widget.xml',
+        ],
+    },
+        # only loaded in demonstration mode
     'demo': [
         'demo/demo.xml',
     ],

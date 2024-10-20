@@ -11,25 +11,21 @@ class StudentAPIController(http.Controller):
     def create_student(self, **post):
         """Create a new student record"""
         try:
-            # Log the incoming raw data
             raw_data = request.httprequest.data
 
-            # Check if there's data in the request
             if raw_data:
-                # Decode the data from bytes to string and load it as JSON
-                data = raw_data.decode('utf-8')
-                vals = json.loads(data)
+                vals = request.get_json_data()
+                # data = raw_data.decode('utf-8')
+                # vals = json.loads(data)
 
-                # Create the student record
                 res = request.env["sms_module.student"].sudo().create(vals)
 
                 _logger.info(f"Successfully created Student ID: {res.id}")
 
-                # Return success response with the created student ID
                 return request.make_json_response({
                     "message": "Student has been created successfully",
                     "student_id": res.id
-                }, status=200)
+                }, status=201)
             else:
                 _logger.warning("No data provided in the request")
                 return request.make_response(
@@ -85,16 +81,12 @@ class StudentAPIController(http.Controller):
     def update_student(self, student_id, **post):
         """Update a student record"""
         try:
-            # Log the incoming raw data
             raw_data = request.httprequest.data
 
-            # Check if there's data in the request
             if raw_data:
-                # Decode the data from bytes to string and load it as JSON
                 data = raw_data.decode('utf-8')
                 vals = json.loads(data)
 
-                # Extract student ID from the data
                 if not student_id:
                     _logger.warning("No student_id provided")
                     return request.make_response(
@@ -102,7 +94,6 @@ class StudentAPIController(http.Controller):
                         status=400,
                     )
 
-                # Search for the student record
                 student = request.env["sms_module.student"].sudo().browse(student_id)
                 if not student.exists():
                     _logger.warning(f"Student with ID {student_id} not found")
@@ -111,7 +102,6 @@ class StudentAPIController(http.Controller):
                         status=404,
                     )
 
-                # Update the student record
                 student.sudo().write(vals)
 
                 _logger.info(f"Successfully updated Student ID: {student.id}")
@@ -139,17 +129,14 @@ class StudentAPIController(http.Controller):
         try:
             student = request.env['sms_module.student'].sudo().browse(student_id)
 
-            # Check if the student exists before deleting
             if not student.exists():
                 return request.make_response(json.dumps({
                     'status': 'error',
                     'message': "Student not found"
                 }), status=404, headers={'Content-Type': 'application/json'})
 
-            # Save the name before deleting
             student_name = student.name
 
-            # Delete the student record
             student.sudo().unlink()
 
             _logger.info(f"Deleted Student ID: {student_id}")

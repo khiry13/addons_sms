@@ -17,6 +17,8 @@
                         <group>
                             <field name="name"/>
                             <field name="date_of_birth"/>
+                            <!-- Here we are referencing the custom age widget using 'widget' attribute -->
+                            <field name="date_of_birth" widget="AgeWidget" options="{'isMonth': True, 'isDay': True}"/>
                             <field name="student_id" widget="CopyClipboardChar"/>
                             <field name="profile_link" widget="CopyClipboardURL"/>
                             <field name="gender" widget="radio"/>

@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<!-- AgeWidget.xml -->
+<templates xml:space="preserve">
+    <t t-name="sms_module.AgeWidget">
+        <div class="age-widget">
+<!--            <span t-esc="state.age"/>-->
+            <span t-esc="formattedAge"/>
+
+        </div>
+    </t>
+</templates>
