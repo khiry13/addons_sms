@@ -18,13 +18,13 @@
 
     <!--TODO[IMP]: extended_course_view_tree-->
     <record id="extended_course_view_tree" model="ir.ui.view">
-        <field name="name">sms_module.extended_course.tree</field>
+        <field name="name">sms_module.extended_course.list</field>
         <field name="model">sms_module.extended_course</field>
         <field name="arch" type="xml">
-            <tree>
+            <list>
                 <field name="name"/>
                 <field name="course_prerequisite"/>
-            </tree>
+            </list>
         </field>
     </record>
 
@@ -32,6 +32,6 @@
     <record id="extended_course_action" model="ir.actions.act_window">
         <field name="name">Extended Courses</field>
         <field name="res_model">sms_module.extended_course</field>
-        <field name="view_mode">tree,form</field>
+        <field name="view_mode">list,form</field>
     </record>
 </odoo>

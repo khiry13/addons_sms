@@ -1,0 +1,27 @@
+<odoo>
+    <record id="view_select_record_wizard_form" model="ir.ui.view">
+        <field name="name">select.record.wizard.form</field>
+        <field name="model">select.record.wizard</field>
+        <field name="arch" type="xml">
+            <form string="Select Records">
+                <sheet>
+                    <field name="temp_item_ids" widget="many2many_checkboxes"/>
+                    <footer>
+                        <button name="confirm_action" string="Confirm" type="object" class="btn-primary"/>
+                        <button string="Cancel" class="btn-secondary" special="cancel"/>
+                    </footer>
+                </sheet>
+            </form>
+        </field>
+    </record>
+
+    <record id="view_select_record_wizard_list" model="ir.ui.view">
+        <field name="name">select.record.wizard.list</field>
+        <field name="model">sms_module.student</field>  <!-- Replace with the model you're selecting from -->
+        <field name="arch" type="xml">
+            <list string="Records">
+                <field name="display_name"/>
+            </list>
+        </field>
+    </record>
+</odoo>

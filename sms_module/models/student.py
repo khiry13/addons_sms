@@ -77,6 +77,9 @@ class Student(models.Model):
     def create(self, vals):
         if vals.get('student_id', ('New')) == ('New'):
             vals['student_id'] = self.env['ir.sequence'].next_by_code('sms_module.student') or ('New')
+
+        self.env['bus.bus']._sendone("auto_refresh", "auto_refresh", {'model': self._name})
+        # self.env['bus.bus']._sendone("auto_refresh", "auto_refresh", False)
         return super(Student, self).create(vals)
 
     @api.depends('date_of_birth')
@@ -145,12 +148,12 @@ class Student(models.Model):
     def action_trigger_students_age(self):
         age_threshold = 18
         adult_students = self.with_context(age_threshold=age_threshold).get_adult_students()
-        # Display the filtered students in a popup view (e.g., a tree view)
+        # Display the filtered students in a popup view (e.g., a list view)
         return {
             'name': 'Adult Students',
             'type': 'ir.actions.act_window',
             'res_model': 'sms_module.student',
-            'view_mode': 'tree',
+            'view_mode': 'list',
             'target': 'new',
             'domain': [('id', 'in', adult_students.ids)],
         }
@@ -183,6 +186,20 @@ class Student(models.Model):
             'name': 'Select Interests',
             'res_model': 'sms_module.student_wizard',
             'view_mode': 'form',
+            'target': 'new',
+        }
+
+    def open_select_record_wizard(self):
+        self.env['sms_module.item_selection'].search([]).unlink()
+        self.env['sms_module.item_selection'].create({'name': 'Option 1'})
+        self.env['sms_module.item_selection'].create({'name': 'Option 2'})
+        self.env['sms_module.item_selection'].create({'name': 'Option 3'})
+        return {
+            'name': 'Select Records',
+            'type': 'ir.actions.act_window',
+            'res_model': 'sms_module.item_selection',
+            'view_mode': 'list',
+            # 'view_id': self.env.ref('sms_module.view_select_record_wizard_form').id,
             'target': 'new',
         }
     # endregion

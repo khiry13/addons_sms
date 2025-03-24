@@ -50,4 +50,8 @@ access_enroll_wizard,access.enroll.wizard,model_enroll_wizard,sms_module.group_s
 
 access_student_wizard_user,access_student_wizard_user,model_sms_module_student_wizard,base.group_user,1,1,1,0
 
+access_select_record_wizard,access_select_record_wizard,model_select_record_wizard,base.group_system,1,1,1,1
+access_select_record_wizard,access_select_record_wizard,model_select_record_wizard,sms_module.group_sms_administrator,1,1,1,1
+access_select_record_wizard,access_select_record_wizard,model_select_record_wizard,sms_module.group_sms_registrar,1,1,1,1
 
+access_item_selection,access_item_selection,model_sms_module_item_selection,base.group_system,1,1,1,1

@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<templates xml:space="preserve">
+    <t t-name="sms_module.DashboardCountItem">
+
+        <div class="card" t-attf-class="{{props.color}}">
+            <div class="card-icon">
+                <i t-attf-class="fa {{props.main_icon}}"></i>
+            </div>
+            <div class="card-info">
+                <h3 t-esc="count"/>
+                <p t-esc="props.label" />
+                <button class="more-info-button" t-on-click="showMore">More Info</button>
+            </div>
+        </div>
+
+    </t>
+</templates>

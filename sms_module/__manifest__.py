@@ -18,7 +18,7 @@ Long description of module's purpose
     'version': '0.1',
 
     # any module necessary for this one to work correctly
-    'depends': ['base', 'mail', 'web', 'calendar'],
+    'depends': ['base', 'mail', 'sale', 'web', 'calendar'],
 
     # always loaded
     'data': [
@@ -27,7 +27,7 @@ Long description of module's purpose
         'security/ir.model.access.csv',
 
         'data/student_sequence.xml',
-        'data/cron_job_data.xml',
+        # 'data/cron_job_data.xml',
 
         'views/student_views.xml',
         'views/course_views.xml',
@@ -38,6 +38,8 @@ Long description of module's purpose
         'views/extended_course_views.xml',
         'views/emergency_contact_views.xml',
         'views/sms_config_settings_views.xml',
+        'views/dashboard_action.xml',
+        'views/student_course_portal.xml',
         'views/menus.xml',
 
         'reports/student_report.xml',
@@ -45,15 +47,25 @@ Long description of module's purpose
         'demo/demo_data.xml',
 
         'wizard/make_enroll_wizard_views.xml',
-        'wizard/student_wizard_views.xml'
+        'wizard/student_wizard_views.xml',
+        'wizard/select_record_wizard_views.xml'
 
         # 'views/views.xml',
         # 'views/templates.xml',
     ],
+    'controllers': [
+    'controllers/portal_controller.py',
+    ],
     'assets': {
         'web.assets_backend': [
+            'sms_module/static/src/scss/dashboard.scss',
             'sms_module/static/src/js/age_field_widget.js',
             'sms_module/static/src/xml/age_field_widget.xml',
+            'sms_module/static/src/xml/dashboard_count_item.xml',
+            'sms_module/static/src/js/dashboard_count_item.js',
+            'sms_module/static/src/js/dashboard.js',
+            'sms_module/static/src/xml/dashboard_template.xml',
+    #
         ],
     },
         # only loaded in demonstration mode

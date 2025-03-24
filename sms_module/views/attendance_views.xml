@@ -22,10 +22,10 @@
     <!--TODO[IMP]: attendance_view_tree-->
 
     <record id="attendance_view_tree" model="ir.ui.view">
-        <field name="name">sms_module.attendance.tree</field>
+        <field name="name">sms_module.attendance.list</field>
         <field name="model">sms_module.attendance</field>
         <field name="arch" type="xml">
-            <tree string="Attendance" decoration-danger="status == 'absent'" decoration-success="status == 'present'">
+            <list string="Attendance" decoration-danger="status == 'absent'" decoration-success="status == 'present'">
                 <field name="attendance_date"/>
                 <field name="status"/>
                 <field name="student_id"/>
@@ -33,7 +33,7 @@
                 <field name="comments" optional="hide"/>
                 <field name="class_name" optional="show"/>
                 <field name="internal_notes" invisible="1"/>
-            </tree>
+            </list>
         </field>
     </record>
 
@@ -68,7 +68,7 @@
     <record id="attendance_action" model="ir.actions.act_window">
         <field name="name">Attendances</field>
         <field name="res_model">sms_module.attendance</field>
-        <field name="view_mode">tree,form</field>
+        <field name="view_mode">list,form</field>
         <field name="view_id" ref="attendance_view_tree"/>
         <field name="search_view_id" ref="attendance_view_search"/>
         <field name="context">{'search_default_date_today': 1}</field>

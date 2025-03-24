@@ -1,0 +1,160 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<odoo>
+
+    <template id="attend_details_template">
+        <t t-call="web.html_container">
+            <t t-foreach="docs" t-as="o">
+            <t t-set="o" t-value="o.with_context({'lang': 'ar_001'})"/>
+                 <t t-call="web.external_layout">
+                     <style>
+                        th {
+                         border: 2px solid #922B21;
+                         padding: 6px;
+                         text-align:center;
+                        }
+                    </style>
+                    <t t-set="department_ids" t-value="o.department_ids or o.employee_ids.mapped('department_id') or o.allowed_employee_ids.mapped('department_id')"/>
+
+                    <t t-foreach="department_ids" t-as="department">
+
+                        <t t-if="o.employee_ids">
+                            <t t-set="employee_ids" t-value="o.employee_ids.filtered(lambda e: department.path_code == e.department_id.path_code )"/>
+                        </t>
+                        <t t-if="not o.employee_ids">
+                            <t t-set="employee_ids" t-value="o.allowed_employee_ids.filtered(lambda e: department.path_code == e.department_id.path_code)"/>
+                        </t>
+                        <t t-foreach="employee_ids" t-as="employee">
+
+                            <div class="page p-3 mb-2 text-nowrap" style="direction:rtl; text-align:right; font-size:12px; page-break-inside: avoid;">
+                                <div style="font-size:15px; font-weight:bold;">
+                                    <div class="row ml-1 mr-1 mt-2 mb-2" style="border: 2px solid #2E86C1;">
+                                        <div class="col-6">
+                                            <span class=" pb-2 pt-2" t-esc="department.name"/>
+                                        </div>
+                                        <div class="col-6" style="text-align:left;">
+                                            <span class=" pb-2 pt-2" t-esc="employee.policy_group_id.name"/>
+                                        </div>
+                                    </div>
+
+                                    <div class="row pb-2">
+                                        <div class="col-6">
+                                            <span>من تاريخ : </span>
+                                            <span t-esc="o.from_date"/>
+                                        </div>
+                                        <div class="col-6">
+                                            <span>إلى تاريخ : </span>
+                                            <span t-esc="o.to_date"/>
+                                        </div>
+                                    </div>
+                                    <div class="row pb-3">
+                                        <div class="col-6">
+                                            <span>اسم الموظف : </span>
+                                            <span t-esc="employee.name"/>
+                                        </div>
+                                        <div class="col-6">
+                                            <span>رقم الموظف : </span>
+                                            <span t-esc="employee.id"/>
+                                        </div>
+                                    </div>
+                                </div>
+
+                                <table class="w-100">
+<!--                                        style="margin-left:auto; margin-right:auto; ">-->
+                                    <tr>
+                                        <th>التاريخ</th>
+                                        <th>
+                                            <div style="border-bottom: 1px solid #CB4335;">الفترة</div>
+                                            <div class="row">
+                                                <div class="col-6" style="border-left: 1px solid #CB4335;" >د</div>
+                                                <div class="col-6">خ</div>
+                                            </div>
+                                        </th>
+                                        <th>التأخير</th>
+                                        <th>التقصير</th>
+                                        <th>الإضافي</th>
+                                        <th>ساعات العمل</th>
+                                        <th width="5%">ملاحظات</th>
+                                        <th>جدول الدوام</th>
+                                    </tr>
+                                    <t t-set="timesheet_ids" t-value="o.timesheet_ids.filtered(lambda t: t.employee_id == employee)"/>
+
+                                    <t t-set="total_delay" t-value="0"/>
+                                    <t t-set="total_shortage" t-value="0"/>
+                                    <t t-set="total_overtime" t-value="0"/>
+                                    <t t-set="total_working_time" t-value="0"/>
+                                    <t t-set="total_absent" t-value="0"/>
+                                    <t t-set="total_dayoff" t-value="0"/>
+                                    <t t-set="total_delay_shortage" t-value="0"/>
+                                    <t t-set="total_excluded_hours" t-value="0"/>
+<!--                                    <t t-set="total_" t-value="0"/>-->
+                                    <t t-foreach="timesheet_ids" t-as="timesheet">
+                                        <tr>
+                                            <th><span t-esc="timesheet.date.strftime('%A , %d-%m-%Y')"/></th>
+                                            <th>
+                                                <div class="row">
+                                                    <div class="col-6" style="border-left: 1px solid #CB4335;">
+                                                        <span t-field="timesheet.first_checkin_time" t-options='{"widget": "float_time"}'/></div>
+                                                    <div class="col-6">
+                                                        <span t-field="timesheet.last_checkout_time" t-options='{"widget": "float_time"}'/></div>
+                                                </div>
+                                            </th>
+                                            <th><span t-field="timesheet.delay_time" t-options='{"widget": "float_time"}'/></th>
+                                            <th><span t-field="timesheet.shortage_time" t-options='{"widget": "float_time"}'/></th>
+                                            <th><span t-field="timesheet.overtime" t-options='{"widget": "float_time"}'/></th>
+                                            <th><span t-field="timesheet.working_time" t-options='{"widget": "float_time"}'/></th>
+                                            <th width="5%" class="text-wrap"><span class="text-wrap" t-field="timesheet.notes"/></th>
+                                            <th><span t-field="timesheet.shift_id" class="text-wrap"/></th>
+                                        </tr>
+
+                                        <t t-set="total_delay" t-value="total_delay + timesheet.delay_time"/>
+                                        <t t-set="total_shortage" t-value="total_shortage + timesheet.shortage_time"/>
+                                        <t t-set="total_overtime" t-value="total_overtime + timesheet.overtime"/>
+                                        <t t-set="total_working_time" t-value="total_working_time + timesheet.working_time"/>
+                                        <t t-if="timesheet.is_absent">
+                                            <t t-set="total_absent" t-value="total_absent + 1"/>
+                                        </t>
+                                        <t t-if="timesheet.is_dayoff">
+                                            <t t-set="total_dayoff" t-value="total_dayoff + 1"/>
+                                        </t>
+                                        <t t-set="total_delay_shortage" t-value="total_delay_shortage + timesheet.total_delay_shortage"/>
+                                        <t t-set="total_excluded_hours" t-value="total_excluded_hours + timesheet.time_off_hours"/>
+                                    </t>
+                                    <tr>
+                                        <th style="border-right: 2px solid #FFF; border-left: 2px solid #FFF;"></th>
+                                        <th></th>
+                                        <th><span t-esc="o.convert_to_time_format(total_delay)"/></th>
+                                        <th><span t-esc="o.convert_to_time_format(total_shortage)"/></th>
+                                        <th><span t-esc="o.convert_to_time_format(total_overtime)"/></th>
+                                        <th><span t-esc="o.convert_to_time_format(total_working_time)"/></th>
+                                        <th class="w-25" style="border-left: 2px solid #FFF;"></th>
+                                        <th style="border-left: 2px solid #FFF;"></th>
+                                    </tr>
+                                    <tr>
+                                        <th>إجمالي أيام الغياب </th>
+                                        <th><span t-esc="total_absent"/></th>
+                                        <th ></th>
+                                        <th></th>
+                                        <th></th>
+                                        <th></th>
+                                        <th class="w-25">إجمالي أيام العطلة</th>
+                                        <th><span t-esc="total_dayoff"/></th>
+                                    </tr>
+                                    <tr>
+                                        <th class="text-wrap">إجمالي التأخير والتقصير </th>
+                                        <th><span t-esc="o.convert_to_time_format(total_delay_shortage)"/></th>
+                                        <th></th>
+                                        <th></th>
+                                        <th></th>
+                                        <th></th>
+                                        <th class="w-25">إجمالي ساعات الاستئذان</th>
+                                        <th><span t-esc="o.convert_to_time_format(total_excluded_hours)"/></th>
+                                    </tr>
+                                </table>
+                            </div>
+                        </t>
+                    </t>
+                </t>
+            </t>
+        </t>
+    </template>
+</odoo>

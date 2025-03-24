@@ -19,13 +19,13 @@
 
     <!--TODO[IMP]: emergency_contact_view_tree-->
     <record id="emergency_contact_view_tree" model="ir.ui.view">
-        <field name="name">sms_module.emergency_contact.tree</field>
+        <field name="name">sms_module.emergency_contact.list</field>
         <field name="model">sms_module.emergency_contact</field>
         <field name="arch" type="xml">
-            <tree>
+            <list>
                 <field name="name"/> <!-- Inherited from res.partner -->
                 <field name="contact_type"/>
-            </tree>
+            </list>
         </field>
     </record>
 
@@ -33,6 +33,6 @@
     <record id="emergency_contact_action" model="ir.actions.act_window">
         <field name="name">Emergency Contacts</field>
         <field name="res_model">sms_module.emergency_contact</field>
-        <field name="view_mode">tree,form</field>
+        <field name="view_mode">list,form</field>
     </record>
 </odoo>

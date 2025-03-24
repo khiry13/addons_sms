@@ -1,0 +1,56 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <template id="portal_student_course" name="Students And Courses" inherit_id="portal.portal_breadcrumbs" priority="30">
+        <xpath expr="//ol[hasclass('o_portal_submenu')]" position="inside">
+            <li t-if="page_name == 'student_course'" t-attf-class="breadcrumb-item #{'active ' if student_course else ''}">
+                <a t-if="student_course" t-attf-href="/student_course?{{ keep_query() }}">Students And Courses</a>
+                <t t-else="">Students And Courses</t>
+            </li>
+        </xpath>
+    </template>
+    <template id="portal_my_home_menu_student_course" name="Students And Courses" inherit_id="portal.portal_my_home"
+              customize_show="True" priority="30">
+        <xpath expr="//div[hasclass('o_portal_docs')]" position="before">
+            <t t-set="portal_client_category_enable" t-value="True"/>
+        </xpath>
+        <div id="portal_client_category" position="inside">
+            <t t-call="portal.portal_docs_entry">
+                <t t-set="icon" t-value="'/customer_portal_custom/static/src/image/student_course_image.jpg'"/>
+                <t t-set="title">Students And Courses</t>
+                <t t-set="url" t-value="'/student_course'"/>
+                <t t-set="text">View Students And Courses</t>
+                <t t-set="placeholder_count" t-value="'portal_student_course'"/>
+            </t>
+        </div>
+    </template>
+    <template id="portal_my_home_student_course_views" name="My Students And Courses">
+        <t t-call="portal.portal_layout">
+            <t t-set="breadcrumbs_searchbar" t-value="True"/>
+            <t t-call="portal.portal_searchbar">
+                <t t-set="title">Students And Courses</t>
+            </t>
+            <t t-call="portal.portal_table">
+                <thead>
+                    <tr class="active">
+                        <th class="text-left">Student Name</th>
+                        <th class="text-center">Course</th>
+                        <th class="text-end">Status</th>
+                    </tr>
+                </thead>
+                <t t-foreach="student_course" t-as="record">
+                    <tr>
+                        <td class='text-left'>
+                            <span t-field="record.name"/>
+                        </td>
+                        <td class='text-center'>
+                            <span t-field="record.activate"/>
+                        </td>
+                        <td class='text-end'>
+                            <span t-field="record.date_of_birth"/>
+                        </td>
+                    </tr>
+                </t>
+            </t>
+        </t>
+    </template>
+</odoo>

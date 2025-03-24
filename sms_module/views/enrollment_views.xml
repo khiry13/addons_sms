@@ -25,14 +25,14 @@
 
     <!--TODO[IMP]: enrollment_view_tree-->
     <record id="enrollment_view_tree" model="ir.ui.view">
-        <field name="name">sms_module.enrollment.tree</field>
+        <field name="name">sms_module.enrollment.list</field>
         <field name="model">sms_module.enrollment</field>
         <field name="arch" type="xml">
-            <tree string="Enrollment">
+            <list string="Enrollment">
                 <field name="enrollment_date"/>
                 <field name="student_id"/>
                 <field name="course_id"/>
-            </tree>
+            </list>
         </field>
     </record>
 
@@ -91,7 +91,7 @@
     <record id="enrollment_action" model="ir.actions.act_window">
         <field name="name">Enrollments</field>
         <field name="res_model">sms_module.enrollment</field>
-        <field name="view_mode">tree,form,kanban,calendar</field>
+        <field name="view_mode">list,form,kanban,calendar</field>
         <field name="view_id" ref="enrollment_view_tree"/>
         <field name="search_view_id" ref="enrollment_view_search"/>
     </record>

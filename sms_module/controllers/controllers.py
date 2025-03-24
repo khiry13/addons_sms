@@ -1,22 +1,20 @@
-# -*- coding: utf-8 -*-
-# from odoo import http
+from odoo import http
+from odoo.http import request
 
 
-# class SmsModule(http.Controller):
-#     @http.route('/sms_module/sms_module', auth='public')
-#     def index(self, **kw):
-#         return "Hello, world"
+class DashboardController(http.Controller):
 
-#     @http.route('/sms_module/sms_module/objects', auth='public')
-#     def list(self, **kw):
-#         return http.request.render('sms_module.listing', {
-#             'root': '/sms_module/sms_module',
-#             'objects': http.request.env['sms_module.sms_module'].search([]),
-#         })
+    @http.route('/sms_module/dashboard/data', type='json', auth='user')
+    def get_dashboard_data(self):
+        # Fetch dynamic data from the server
+        user_count = request.env['res.users'].search_count([])
+        student_count = request.env['sms_module.student'].search_count([])
+        alerts_count = request.env['mail.activity'].search_count([])
+        orders_count = request.env['sale.order'].search_count([])
 
-#     @http.route('/sms_module/sms_module/objects/<model("sms_module.sms_module"):obj>', auth='public')
-#     def object(self, obj, **kw):
-#         return http.request.render('sms_module.object', {
-#             'object': obj
-#         })
-
+        return {
+            'user_count': user_count,
+            'student_count': student_count,
+            'alerts_count': alerts_count,
+            'orders_count': orders_count,
+        }

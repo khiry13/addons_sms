@@ -20,15 +20,15 @@
 
     <!--TODO[IMP]: grade_view_tree-->
     <record id="grade_view_tree" model="ir.ui.view">
-        <field name="name">sms_module.grade.tree</field>
+        <field name="name">sms_module.grade.list</field>
         <field name="model">sms_module.grade</field>
         <field name="arch" type="xml">
-            <tree string="Grade">
+            <list string="Grade">
                 <field name="grade"/>
                 <field name="date"/>
                 <field name="student_id"/>
                 <field name="course_id"/>
-            </tree>
+            </list>
         </field>
     </record>
 
@@ -50,7 +50,7 @@
     <record id="grade_action" model="ir.actions.act_window">
         <field name="name">Grades</field>
         <field name="res_model">sms_module.grade</field>
-        <field name="view_mode">tree,form</field>
+        <field name="view_mode">list,form</field>
         <field name="view_id" ref="grade_view_tree"/>
         <field name="search_view_id" ref="grade_view_search"/>
     </record>

@@ -1,0 +1,55 @@
+<t t-name="sms_module.DashboardTemplate">
+    <div class="dashboard">
+        <DashboardCountItem />
+        <DashboardCountItem main_icon="'fa-book'" chart_icon="'fa-line-chart'" color="'bg-info'" label=" 'Courses' "
+                              domain="[]" model=" 'sms_module.course' "/>
+        <DashboardCountItem main_icon="'fa-list-alt'" chart_icon="'fa-pie-chart'" color="'bg-warning'"
+                       label=" 'Enrollments' " domain="[[ 'state', '=', 'draft' ]]" model=" 'sms_module.enrollment' "/>
+        <DashboardCountItem main_icon="'fa-calendar'" chart_icon="'fa-area-chart'" color="'bg-primary'"
+                       label=" 'Attendances' " domain="[[ 'status', '=', 'absent' ]]"   model=" 'sms_module.attendance' "/>
+
+<!--        <div class="card green">-->
+<!--            <div class="card-icon">-->
+<!--                <i class="fa fa-user"></i>-->
+<!--            </div>-->
+<!--            <div class="card-info">-->
+<!--                <h3 t-esc="state.userCount"/>-->
+<!--                <p>User</p>-->
+<!--                <button class="more-info-button" t-on-click="openUsers">More Info</button>-->
+<!--            </div>-->
+<!--        </div>-->
+
+<!--        <div class="card purple">-->
+<!--            <div class="card-icon">-->
+<!--                <i class="fa fa-tasks"></i>-->
+<!--            </div>-->
+<!--            <div class="card-info">-->
+<!--                <h3 t-esc="state.studentCount"/>-->
+<!--                <p>Students</p>-->
+<!--                <button class="more-info-button" t-on-click="openStudents">More Info</button>-->
+<!--            </div>-->
+<!--        </div>-->
+
+<!--        <div class="card orange">-->
+<!--            <div class="card-icon">-->
+<!--                <i class="fa fa-bell"></i>-->
+<!--            </div>-->
+<!--            <div class="card-info">-->
+<!--                <h3 t-esc="state.alertsCount"/>-->
+<!--                <p>Alerts</p>-->
+<!--                <button class="more-info-button" t-on-click="openAlerts">More Info</button>-->
+<!--            </div>-->
+<!--        </div>-->
+
+<!--        <div class="card blue">-->
+<!--            <div class="card-icon">-->
+<!--                <i class="fa fa-shopping-cart"></i>-->
+<!--            </div>-->
+<!--            <div class="card-info">-->
+<!--                <h3 t-esc="state.ordersCount"/>-->
+<!--                <p>Orders</p>-->
+<!--                <button class="more-info-button" t-on-click="openOrders">More Info</button>-->
+<!--            </div>-->
+<!--        </div>-->
+    </div>
+</t>
